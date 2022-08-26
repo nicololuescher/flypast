@@ -1,0 +1,38 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goVer: [1.17]
+
+    steps:
+    - name: Set up Go ${{ matrix.goVer }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.goVer }}
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        cd ./src/backend
+        go get -v -t -d ./...
+        go get gopkg.in/check.v1
+    - name: Build
+      run: | 
+        cd ./src/backend
+        go build -v .
+    # - name: Test
+    #   run: go test -v ./...
