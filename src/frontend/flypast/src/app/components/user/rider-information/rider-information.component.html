@@ -2,11 +2,12 @@
     <div class="flex justify-center w-2/3">
         <div class="flex flex-col grow border-2 border-gray-500 p-5 relative">
             <div>
-                <h1>Flyer</h1>
+                <h1>{{ attractionName$ | ngrxPush }}</h1>
             </div>
             <div>
-                <ul></ul>
-                <h1>Ticket#32324563</h1>
+                <ul>
+                    <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
+                </ul>
             </div>
             <div *ngIf="showAddRider" (click)="showInputFields()">
                 <div class="flex">

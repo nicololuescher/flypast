@@ -10,11 +10,13 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
     styleUrls: ['./rider-information.component.css']
 })
 export class RiderInformationComponent implements OnInit {
-    ticketArray: string[] = [];
+    public attractionName$ = this.storeFacade.user.ride.getAttractionName$;
+    public ticketArray$ = this.storeFacade.user.ride.getTicketArray$;
     showAddRider = true;
     showInput = false;
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
+    // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     ngOnInit(): void {}
 
     openTimeSelect(): void {
@@ -26,9 +28,8 @@ export class RiderInformationComponent implements OnInit {
         this.showAddRider = false;
     }
 
-    onSubmit(ticketNumber: NgForm): any {}
-
-    addTicket(ticketNumber: String): void {
-        this.ticketArray.push('ticketNumber');
+    onSubmit(ticketNumber: NgForm): void {
+        this.storeFacade.user.ride.fetchAdditionalTicket(ticketNumber.value.ticket_number);
+        ticketNumber.setValue({ ticket_number: '' });
     }
 }

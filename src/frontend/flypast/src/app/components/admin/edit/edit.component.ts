@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Attraction } from 'src/app/interfaces/models';
 import { StoreFacadeService } from 'src/app/store/store-facade.service';
+import { AttractionEffect } from 'src/app/store/user/attraction';
 
 @Component({
     selector: 'app-edit',
@@ -33,7 +34,7 @@ export class EditComponent implements OnInit, OnDestroy {
         });
     }
 
-    dateToString(time: any) {
+    dateToString(time: any): string {
         let hours = new String(time / 60);
         let min = new String(time % 60);
 
