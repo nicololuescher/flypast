@@ -29,31 +29,31 @@ func GetActivitiesByTicketID(c *fiber.Ctx) error {
 }
 
 func GetAvailableActivities(ticketID string) ([]models.Activity, error) {
-	fmt.Println("ticketID: ", ticketID)
+
 	// Get all activities from the database
 	var activities []models.Activity
 	if err := database.DBConn.Find(&activities).Error; err != nil {
 		return nil, err
 	}
 
+	// Get ticket from ticketID
 	var ticket models.Ticket
-	if err := database.DBConn.Where("ID = ?", ticketID).First(&ticket).Error; err == nil {
+	if err := database.DBConn.First(&ticket, ticketID).Error; err != nil {
 		return nil, err
 	}
 
 	localDate := time.Now().Format("2006-01-02")
 	var availableActivities []models.Activity
 
-	fmt.Println("ValidAtDay: ", ticket.ValidAtDay)
-	fmt.Println("localDate: ", localDate)
+	// Only check TimeToNextRide if the ticket is valid today
 	if ticket.ValidAtDay != localDate {
+		// If not valid today, return all activities
 		for _, activity := range activities {
 			availableActivities = append(availableActivities, activity)
 		}
 	} else {
-		fmt.Println("LocalDate == ValidAtDay")
+
 		timeToNextRide := GetTimeToNextRide(int(ticket.ID))
-		fmt.Println("timeToNextRide: ", timeToNextRide)
 
 		for _, activity := range activities {
 			if activity.Duration < timeToNextRide {
@@ -64,6 +64,7 @@ func GetAvailableActivities(ticketID string) ([]models.Activity, error) {
 	return availableActivities, nil
 }
 
+// Get amount of minutes until the next ride starts
 func GetTimeToNextRide(ticketID int) int {
 	var rides []models.Ride
 	if err := database.DBConn.Where("ticket_id = ?", ticketID).Find(&rides).Error; err != nil {
@@ -83,7 +84,18 @@ func GetTimeToNextRide(ticketID int) int {
 		}
 	}
 
-	return nextRide
+	// Calculate minutes since the attraction started
+	timeStampString := time.Now().Format("2006-01-02 15:04:05")
+	layOut := "2006-01-02 15:04:05"
+	timeStamp, err := time.Parse(layOut, timeStampString)
+	if err != nil {
+		fmt.Println(err)
+	}
+	hr, min, _ := timeStamp.Clock()
+
+	minutesSinceAttractionStartTime := hr*60 + min
+
+	return nextRide - minutesSinceAttractionStartTime
 }
 
 func CreateActivity(c *fiber.Ctx) error {
