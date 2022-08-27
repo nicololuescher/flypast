@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {StoreFacadeService} from "../../../store/store-facade.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-ride-selection',
@@ -7,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RideSelectionComponent implements OnInit {
 
-
-  constructor() { }
+    public numberOfRides$ = this.storeFacade.user.ticket.getNumberOfRides$
+  constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute)  {}
 
   ngOnInit(): void {
+  }
+
+  openSelect() {
+      this.router.navigate(['../select-activity'], {relativeTo: this.route})
   }
 
 }

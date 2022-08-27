@@ -16,6 +16,7 @@ export class StoreFacadeService {
         return {
             ticket: {
                 getTicket$: ((): Observable<Ticket | null> => this.store$.select(ticketSelectors.getTicket))(),
+                getNumberOfRides$: ((): Observable<number | null> => this.store$.select(ticketSelectors.getNumberOfRides))(),
                 fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber }))
             }
         };

@@ -13,6 +13,11 @@ const getTicket = createSelector(getTicketState, (state: TicketState): Ticket | 
     return state.ticket;
 });
 
+const getNumberOfRides = createSelector(getTicket, (ticket: Ticket | null): number | null => {
+    return ticket?.number_of_rides ?? null;
+});
+
 export const ticketSelectors = {
-    getTicket
+    getTicket,
+    getNumberOfRides
 };
