@@ -102,29 +102,29 @@ func GetAttractionRides(c *fiber.Ctx) error {
 	return c.JSON(rides)
 }
 
-func GetAttractionFreeRidesBySlotsByDate(c *fiber.Ctx) error {
-	// Parse body which contains an array of Ticket Numbers under the key "tickets"
-	var body map[string]interface{}
-	if err := c.BodyParser(&body); err != nil {
-		return err
-	}
-
-	if freeRidesBySlotsByAttractionArray, err := GetFreeRidesBySlotsByAttraction(c.Params("id"), c.Params("date_day")); err != nil {
+func GetAttractionFreeRidesBySlotsByTicket(c *fiber.Ctx) error {
+	if freeRidesBySlotsByAttractionArray, err := GetFreeRidesBySlotsByAttraction(c.Params("id"), c.Params("ticket_id")); err != nil {
 		return err
 	} else {
 		return c.JSON(freeRidesBySlotsByAttractionArray)
 	}
 }
 
-func GetFreeRidesBySlotsByAttraction(attractionID string, dateDay string) ([]models.FreeRidesPerSlot, error) {
+func GetFreeRidesBySlotsByAttraction(attractionID string, ticketID string) ([]models.FreeRidesPerSlot, error) {
 	var attraction models.Attraction
 	if err := database.DBConn.First(&attraction, attractionID).Error; err != nil {
 		return nil, err
 	}
 
+	// get ticket by ticketNumber
+	var ticket models.Ticket
+	if err := database.DBConn.First(&ticket, ticketID).Error; err != nil {
+		return nil, err
+	}
+
 	// Get all rides from the database which are connected to the attraction from the given date
 	var rides []models.Ride
-	if err := database.DBConn.Where("attraction_id = ? AND date_day = ?", attraction.ID, dateDay).Find(&rides).Error; err != nil {
+	if err := database.DBConn.Where("attraction_id = ? AND ticket_id = ?", attraction.ID, ticket.ID).Find(&rides).Error; err != nil {
 		return nil, err
 	}
 

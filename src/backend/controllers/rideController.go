@@ -43,7 +43,20 @@ func CreateRide(c *fiber.Ctx) error {
 		})
 	}
 
-	// TODO Validate existing rides and date
+	// check if existing rides at date and ticket_id exist
+	// var existingRides []models.Ride
+	// if err := database.DBConn.Where("date_day = ? AND ticket_id = ?", ride.DateDay, ride.TicketID).Find(&existingRides).Error; err != nil {
+	// 	return err
+	// }
+
+	// if len(existingRides) > 0 {
+	// 	// ride must have the same date as existing rides
+	// 	if ride.DateDay != existingRides[0].DateDay || ride.TicketID != existingRides[0].TicketID {
+	// 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
+	// 			"message": "Ride date and TicketID must be the same as existing rides",
+	// 		})
+	// 	}
+	// }
 
 	if err := database.DBConn.Create(&ride).Error; err != nil {
 		return err

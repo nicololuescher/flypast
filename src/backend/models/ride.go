@@ -6,10 +6,9 @@ import (
 
 type Ride struct {
 	gorm.Model
-	AttractionID uint   `json:"attraction_id"`
-	TicketID     uint   `json:"ticket_id"`
-	SlotNumber   int    `json:"slot_number"`
-	DateDay      string `json:"date_day"`
+	AttractionID uint `json:"attraction_id"`
+	TicketID     uint `json:"ticket_id"`
+	SlotNumber   int  `json:"slot_number"`
 }
 
 type FreeRidesPerSlot struct {
