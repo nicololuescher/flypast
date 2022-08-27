@@ -19,7 +19,7 @@ func Setup(app *fiber.App) {
 
 	// Ticket
 	v1.Get("/tickets", controllers.GetTickets)
-	v1.Get("/tickets/:id", controllers.GetTicket)
+	v1.Get("/tickets/:ticket_number", controllers.GetTicketByTicketNumber)
 	v1.Post("/tickets", controllers.CreateTicket)
 	v1.Put("/tickets/:id", controllers.UpdateTicket)
 	v1.Delete("/tickets/:id", controllers.DeleteTicket)

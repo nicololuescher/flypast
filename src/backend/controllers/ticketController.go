@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"net/http"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
 	"github.com/nicololuescher/flypast/models"
@@ -80,6 +82,37 @@ func DeleteTicket(c *fiber.Ctx) error {
 	// Delete the ticket
 	if err := database.DBConn.Delete(&ticket).Error; err != nil {
 		return err
+	}
+
+	// Return the ticket as JSON
+	return c.JSON(ticket)
+}
+
+func GetTicketByTicketNumber(c *fiber.Ctx) error {
+	// Get the ticket from the database
+	var ticket models.Ticket
+	if err := database.DBConn.Where("ticket_number = ?", c.Params("ticket_number")).First(&ticket).Error; err != nil {
+		return err
+	}
+
+	if ticket.TicketNumber == "" {
+		// create API GET request on https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/{ticket_number}
+		resp, err := http.Get("https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/" + c.Params("ticket_number"))
+		if err != nil {
+			return err
+		}
+		defer resp.Body.Close()
+
+		// Parse the response body into a ticket
+		if err := c.BodyParser(&ticket); err != nil {
+			return err
+		}
+		if err := database.DBConn.Create(&ticket).Error; err != nil {
+			return err
+		}
+
+		// Return the ticket as JSON
+		return c.JSON(ticket)
 	}
 
 	// Return the ticket as JSON
