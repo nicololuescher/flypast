@@ -1,39 +1,71 @@
 <div class="flex justify-center">
     <div class="flex justify-center w-2/3">
-        <div class="flex flex-col grow border-2 border-gray-500 p-5 relative">
+        <div class="flex flex-col grow border-2 border-gray-500 p-5 relative rounded-md">
             <div>
-                <h1>Flyer</h1>
+                <h1 class="font-bold text-2xl mb-8">{{ at?.name }}</h1>
             </div>
-            <div>
-                <h1>Ticket#32324563</h1>
-            </div>
-
             <div>
                 <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
-                    <label for="ticket_nummer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ticketnummer</label>
-                    <input
-                        type="text"
-                        id="ticket_nummer"
-                        class="bg-gray-50 border mb-3 w-80 border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
-                        placeholder="Ticketnummer"
-                        name="ticket_number"
-                        required
-                        minlength="10"
-                        ngModel
-                    />
-                    <button
-                        type="submit"
-                        [disabled]="!ticketNumber.valid"
-                        class="text-white disabled:bg-gray-400 bg-[#213857] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-                    >
-                        Add Rider
-                    </button>
+                    <div class="grid overflow-hidden grid-cols-3 grid-rows-4 gap-2">
+                        <label for="opening_time" class="block mb-2 text-lg font-medium text-gray-900">Öffnungszeit (in Minuten):</label>
+                        <div class="box col-start-2 col-span-2">
+                            <input
+                                type="text"
+                                id="opening_time"
+                                class="bg-gray-50 border mb-3 w-full border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
+                                name="opening_time"
+                                required
+                                minlength="10"
+                                ngModel
+                            />
+                        </div>
+                        <label for="last_ride" class="block mb-2 text-lg font-medium text-gray-900">Letzte Zeit:</label>
+                        <div class="box col-start-2 col-span-2">
+                            <input
+                                type="text"
+                                id="last_ride"
+                                class="bg-gray-50 border mb-3 w-full border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
+                                name="last_ride"
+                                required
+                                minlength="10"
+                                ngModel
+                            />
+                        </div>
+                        <label for="ride_duration" class="block mb-2 text-lg font-medium text-gray-900">Fahrzeit:</label>
+                        <div class="box col-start-2 col-span-2">
+                            <input
+                                type="text"
+                                id="ride_duration"
+                                class="bg-gray-50 border mb-3 w-full border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
+                                name="ride_duration"
+                                required
+                                minlength="10"
+                                ngModel
+                            />
+                        </div>
+                        <label for="number_of_seats" class="block mb-2 text-lg font-medium text-gray-900">Anzahl Plätze:</label>
+                        <div class="col-start-2 col-span-2">
+                            <input
+                                type="text"
+                                id="number_of_seats"
+                                class="bg-gray-50 border mb-3 w-full border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
+                                name="number_of_seats"
+                                required
+                                minlength="10"
+                                ngModel
+                            />
+                        </div>
+                        <div class="col-start-3 col-span-1 ml-auto">
+                            <button
+                                type="submit"
+                                [disabled]="!ticketNumber.valid"
+                                class="text-white disabled:bg-gray-400 bg-[#213857] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                            >
+                                Speichern
+                            </button>
+                        </div>
+                    </div>
                 </form>
-            </div>
-            <div class="h-10">
-                <div class="flex flex-row-reverse">
-                    <button class="w-16 h-6 bg-amber-500 rounded">Next</button>
-                </div>
             </div>
         </div>
     </div>
