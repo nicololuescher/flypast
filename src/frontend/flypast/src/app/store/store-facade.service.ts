@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Attraction, Ticket } from '../interfaces/models';
 import { attractionActions, attractionSelectors } from './user/attraction';
 import { ticketActions, ticketSelectors } from './user/ticket';
+import {rideSummaryActions, rideSummarySelectors} from "./user/ride-summary";
+import {RideSummary} from "../interfaces/ride-summary.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +26,14 @@ export class StoreFacadeService {
             attraction: {
                 getAttractions$: ((): Observable<Attraction[] | null> => this.store$.select(attractionSelectors.getAttractions))(),
                 fetchAttractions: (): void => this.store$.dispatch(attractionActions.fetchAttractions())
-            }
+            },
+            ride: {
+                getRideSummary$: ((): Observable<RideSummary> => this.store$.select(rideSummarySelectors.getRideSummary))(),
+                storeSelectedAttractionAndTicket: (ticket: Ticket, attraction: Attraction): void => this.store$.dispatch(rideSummaryActions.storeSelectedAttractionAndTicket({ ticket, attraction })),
+                storeAdditionalTicket: (ticket: Ticket): void => this.store$.dispatch(rideSummaryActions.storeAdditionalTicket({ ticket })),
+                storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber( { id })),
+                storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide()),
+            },
         };
     }
 }
