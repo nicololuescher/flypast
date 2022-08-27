@@ -4,6 +4,7 @@ import { RideSummary } from '../../../interfaces/ride-summary.interface';
 import { UserState } from '../user.reducer';
 import { userSelector } from '../user.selectors';
 import { RideSummaryState } from './ride-summary.reducer';
+import {Ticket} from "../../../interfaces/models";
 
 const getRideSummaryState = createSelector(userSelector, (state: UserState): RideSummaryState => {
     return state['rideSummary'];
@@ -13,6 +14,16 @@ const getRideSummary = createSelector(getRideSummaryState, (state: RideSummarySt
     return state.rideSummary;
 });
 
+const getAttractionName = createSelector(getRideSummary, (rideSummary: RideSummary): string | null => {
+    return rideSummary.attraction?.name ?? null;
+});
+
+const getTicketArray = createSelector(getRideSummary, (rideSummary: RideSummary): Ticket[] | null => {
+    return rideSummary.tickets ?? null;
+});
+
 export const rideSummarySelectors = {
-    getRideSummary
+    getRideSummary,
+    getAttractionName,
+    getTicketArray
 };
