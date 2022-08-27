@@ -28,11 +28,8 @@ export class RiderInformationComponent implements OnInit {
         this.showAddRider = false;
     }
 
-    onSubmit(ticketNumber: NgForm): any {
+    onSubmit(ticketNumber: NgForm): void {
         this.storeFacade.user.ride.fetchAdditionalTicket(ticketNumber.value.ticket_number);
-    }
-
-    addTicket(ticketNumber: string): void {
-
+        ticketNumber.setValue({ ticket_number: '' });
     }
 }

@@ -8,6 +8,7 @@ import { rideSummaryActions } from './ride-summary.actions';
 import { rideSummarySelectors } from './ride-summary.selectors';
 import {ticketSelectors} from "../ticket";
 import {attractionSelectors} from "../attraction";
+import {TicketService} from "../../../services/ticket.service";
 
 @Injectable()
 export class RideSummaryEffect {
@@ -31,7 +32,11 @@ export class RideSummaryEffect {
     public fetchTicket$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(rideSummaryActions.fetchAdditionalTicket),
-            switchMap((action) => {
+            concatLatestFrom(() => [
+                this.store$.select(rideSummarySelectors.getTicketArray)
+            ]),
+            filter(([action, tickets]) => !!tickets && !tickets.some(ticket => ticket.ticket_number === action.ticketNumber)),
+            switchMap(([action]) => {
                 return this.ticketService.fetchTicket(action.ticketNumber).pipe(
                     map((response) =>
                         rideSummaryActions.storeAdditionalTicket({
