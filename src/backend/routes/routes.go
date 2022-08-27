@@ -22,4 +22,17 @@ func Setup(app *fiber.App) {
 	v1.Put("/tickets/:id", controllers.UpdateTicket)
 	v1.Delete("/tickets/:id", controllers.DeleteTicket)
 
+	// Attraction
+	v1.Get("/attractions", controllers.GetAttractions)
+	v1.Get("/attractions/:id", controllers.GetAttraction)
+	v1.Post("/attractions", controllers.CreateAttraction)
+	v1.Put("/attractions/:id", controllers.UpdateAttraction)
+	v1.Delete("/attractions/:id", controllers.DeleteAttraction)
+
+	// Ride
+	v1.Get("/rides", controllers.GetRides)
+	v1.Get("/rides/:id", controllers.GetRide)
+	v1.Post("/rides", controllers.CreateRide)
+	v1.Put("/rides/:id", controllers.UpdateRide)
+	v1.Delete("/rides/:id", controllers.DeleteRide)
 }
