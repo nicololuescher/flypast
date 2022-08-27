@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     onSubmit(ticketNumber: NgForm): any {
         // TODO: request and store
         this.storeFacade.user.ticket.fetchTicket(ticketNumber.value.ticket_number);
+        this.storeFacade.user.attraction.fetchAttractions();
         this.storeFacade.user.ticket.getTicket$
             .pipe(
                 filter((value) => !!value),
