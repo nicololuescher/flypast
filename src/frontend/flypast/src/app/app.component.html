@@ -1,3 +1,27 @@
-<h1>Test</h1>
+<div class="min-h-full">
+    <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a routerLink="" class="text-white px-3 py-2 rounded-md text-xl font-bold">Logo</a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="ml-4 flex items-center lg:ml-6">
+                        <button (click)="changeLanguage('de')" [ngClass]="{ 'active-language': activeLanguage === 'de' }" class="language">DE</button>
+                        <button (click)="changeLanguage('fr')" [ngClass]="{ 'active-language': activeLanguage === 'fr' }" class="language">FR</button>
+                        <button (click)="changeLanguage('it')" [ngClass]="{ 'active-language': activeLanguage === 'it' }" class="language">IT</button>
+                        <button (click)="changeLanguage('en')" [ngClass]="{ 'active-language': activeLanguage === 'en' }" class="language">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-<router-outlet></router-outlet>
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>

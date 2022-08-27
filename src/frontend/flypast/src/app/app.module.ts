@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UserComponent } from './components/user/user.component';
 import { AppStoreModule } from './store/app-store.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
