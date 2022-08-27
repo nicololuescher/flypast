@@ -9,8 +9,6 @@ import { Ticket } from '../interfaces/models';
     providedIn: 'root'
 })
 export class TicketService {
-    apiURL = 'http://localhost:3000';
-
     constructor(private http: HttpClient) {}
 
     fetchTicket(ticketNumber: string): Observable<Ticket> {
