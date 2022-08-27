@@ -10,7 +10,9 @@ export class SelectActivityComponent implements OnInit {
 
     constructor() {}
 
+    /* eslint-disable */
     ngOnInit(): void {}
+    /* eslint-enable */
 
     onClickItem(title: string): void {
         // eslint-disable-next-line no-console
