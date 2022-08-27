@@ -277,7 +277,7 @@ function parseAttractions(attraction: Attraction, numberOfTickets: number): any 
     return sortedArray;
 }
 
-function intToDate(time: number) {
+function intToDate(time: number): string {
     let hours = new String(time / 60);
     let min = new String(time % 60);
 

@@ -20,9 +20,7 @@ export class SelectActivityComponent implements OnInit {
     /* eslint-enable */
 
     onClickItem(id: number): any {
-        // eslint-disable-next-line no-console
         this.storeFacade.user.ride.storeSelectedAttraction(id);
-        console.log(id);
         this.router.navigate(['../rider-information'], { relativeTo: this.route });
     }
 }

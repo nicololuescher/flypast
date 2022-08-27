@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { filter, map, switchMap } from 'rxjs';
 
 import { RideService } from '../../../services/ride.service';
+import { TicketService } from '../../../services/ticket.service';
+import { attractionSelectors } from '../attraction';
+import { ticketSelectors } from '../ticket';
 import { rideSummaryActions } from './ride-summary.actions';
 import { rideSummarySelectors } from './ride-summary.selectors';
-import {ticketSelectors} from "../ticket";
-import {attractionSelectors} from "../attraction";
-import {TicketService} from "../../../services/ticket.service";
 
 @Injectable()
 export class RideSummaryEffect {
@@ -17,10 +17,7 @@ export class RideSummaryEffect {
     public storeSelectedAttraction$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(rideSummaryActions.storeSelectedAttraction),
-            concatLatestFrom(() => [
-                this.store$.select(ticketSelectors.getTicket),
-                this.store$.select(attractionSelectors.getAttractions)
-            ]),
+            concatLatestFrom(() => [this.store$.select(ticketSelectors.getTicket), this.store$.select(attractionSelectors.getAttractions)]),
             filter(([_, ticket, attractions]) => !!ticket && !!attractions),
             map(([action, ticket, attractions]) => {
                 const attraction = attractions?.find((attraction) => attraction.ID === action.id);
@@ -32,10 +29,8 @@ export class RideSummaryEffect {
     public fetchTicket$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(rideSummaryActions.fetchAdditionalTicket),
-            concatLatestFrom(() => [
-                this.store$.select(rideSummarySelectors.getTicketArray)
-            ]),
-            filter(([action, tickets]) => !!tickets && !tickets.some(ticket => ticket.ticket_number === action.ticketNumber)),
+            concatLatestFrom(() => [this.store$.select(rideSummarySelectors.getTicketArray)]),
+            filter(([action, tickets]) => !!tickets && !tickets.some((ticket) => ticket.ticket_number === action.ticketNumber)),
             switchMap(([action]) => {
                 return this.ticketService.fetchTicket(action.ticketNumber).pipe(
                     map((response) =>

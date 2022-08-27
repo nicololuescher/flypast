@@ -16,8 +16,8 @@ export class RiderInformationComponent implements OnInit {
     showInput = false;
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
-    ngOnInit(): void {
-    }
+    // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+    ngOnInit(): void {}
 
     openTimeSelect(): void {
         this.router.navigate(['../select-activity'], { relativeTo: this.route });

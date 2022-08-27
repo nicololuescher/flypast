@@ -34,7 +34,7 @@ export class EditComponent implements OnInit, OnDestroy {
         });
     }
 
-    dateToString(time: any) {
+    dateToString(time: any): string {
         let hours = new String(time / 60);
         let min = new String(time % 60);
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import {NavigationEnd, NavigationStart, Router} from "@angular/router";
-import {filter} from "rxjs";
+import { filter } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -15,18 +15,13 @@ export class AppComponent {
         this.translate.setDefaultLang('de');
         this.translate.use('de');
         // Navigate back to start in case of refresh
-        this.router.events
-            .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
-            .subscribe(event => {
-                if (
-                    event.id === 1 &&
-                    event.url === event.urlAfterRedirects
-                ) {
-                    if (router.url !== '/user/login') {
-                        router.navigate(['']);
-                    }
+        this.router.events.pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd)).subscribe((event) => {
+            if (event.id === 1 && event.url === event.urlAfterRedirects) {
+                if (router.url !== '/user/login') {
+                    router.navigate(['']);
                 }
-            })
+            }
+        });
     }
 
     public changeLanguage(language: 'de' | 'fr' | 'it' | 'en'): void {

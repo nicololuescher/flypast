@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     /* eslint-enable */
 
     onSubmit(loginData: NgForm): any {
-        // eslint-disable-next-line no-console
         this.router.navigate(['../home'], { relativeTo: this.route });
     }
 }
