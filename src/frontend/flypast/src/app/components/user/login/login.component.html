@@ -1,10 +1,9 @@
-<div class="flex justify-center w-4/5 m-auto">
-    <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm" class="w-full">
+    <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm" class="w-full block">
         <label for="ticket_nummer" class="block mb-2 text-sm font-medium"><h2>Ticketnummer</h2></label>
         <input
             type="text"
             id="ticket_nummer"
-            class="bg-gray-50 border mb-3 w-full h-16 border-gray-300 text-sm rounded-lg block p-2.5"
+            class="bg-gray-50 border mb-3 sm:w-4/5 w-full h-16 border-gray-300 text-sm rounded sm:rounded-l p-2.5"
             placeholder="Ticketnummer"
             name="ticket_number"
             required
@@ -14,9 +13,8 @@
         <button
             type="submit"
             [disabled]="!ticketNumber.valid"
-            class="text-white disabled:bg-gray-400 bg-[#213857] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+            class="disabled:text-white disabled:bg-gray-400 bg-secondary focus:ring-4 focus:outline-none font-medium sm:rounded-r rounded w-full sm:w-1/5 px-5 py-2.5 text-center"
         >
             Weiter
         </button>
     </form>
-</div>

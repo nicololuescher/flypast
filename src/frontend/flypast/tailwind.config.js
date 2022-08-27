@@ -17,6 +17,8 @@ module.exports = {
             colors: {
                 primary: '#213857',
                 secondary: '#f7d107',
+                lightbg: '#f3f3f3',
+                hoverbg: '#4b83c8',
             },
             textColor:{
                 default: "#213857"

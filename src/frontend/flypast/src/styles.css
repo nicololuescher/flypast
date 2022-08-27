@@ -5,5 +5,17 @@
 @tailwind utilities;
 
 h2 {
-    font-size: 1.5rem;
+    @apply text-4xl;
+}
+
+button {
+    @apply transition hover:bg-hoverbg hover:text-white h-16 text-lg;
+}
+
+.hoverable {
+    @apply transition hover:bg-hoverbg cursor-pointer ;
+}
+
+.hoverable:hover > * {
+    @apply transition border-white border-white text-white;
 }

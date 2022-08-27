@@ -1,9 +1,10 @@
-<div class="flex justify-center">
+<h2>Select Activity</h2>
+<div class="flex justify-center mt-32">
     <div class="flex flex-col">
         <div
             (click)="onClickItem(attraction.name)"
             *ngFor="let attraction of attractions$ | ngrxPush"
-            class="w-96 h-20 m-2 rounded-3xl bg-secondary text-primary rounded-md flex justify-center items-center text-center"
+            class="w-96 h-20 m-2 rounded-3xl bg-secondary text-primary rounded-md flex justify-center items-center text-center hoverable"
         >
             <h4 class="text-white">{{ attraction.name }}</h4>
         </div>
