@@ -48,6 +48,9 @@ func Setup(app *fiber.App) {
 	v1.Put("/activities/:id", controllers.UpdateActivity)
 	v1.Delete("/activities/:id", controllers.DeleteActivity)
 
+	// Dashboard
+	v1.Get("/dashboard", controllers.GetAttractionFreeRidesToday)
+
 	// Simple routes
 	// v1.Get("/")
 }

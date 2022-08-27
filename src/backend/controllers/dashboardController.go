@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"math"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,6 +10,7 @@ import (
 )
 
 func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
+	fmt.Println("GetAttractionFreeRidesToday")
 	// Get all attractions from the database
 	var attractions []models.Attraction
 	if err := database.DBConn.Find(&attractions).Error; err != nil {
@@ -45,11 +47,11 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 					}
 				}
 			}
-			Dashboard = append(Dashboard, models.Dashboard{
-				Attraction:       attraction,
-				FreeRidesPerSlot: freeRidesPerSlotArray,
-			})
 		}
+		Dashboard = append(Dashboard, models.Dashboard{
+			Attraction:       attraction,
+			FreeRidesPerSlot: freeRidesPerSlotArray,
+		})
 	}
 
 	return c.JSON(Dashboard)
