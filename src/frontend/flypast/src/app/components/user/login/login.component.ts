@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { filter, take } from 'rxjs';
+
+import { StoreFacadeService } from '../../../store/store-facade.service';
 
 @Component({
     selector: 'app-login',
@@ -7,14 +10,21 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    constructor() {}
+    constructor(private storeFacade: StoreFacadeService) {}
 
     /* eslint-disable */
     ngOnInit(): void {}
     /* eslint-enable */
 
-    onSubmit(tickeNumber: NgForm): any {
-        // eslint-disable-next-line no-console
+    onSubmit(ticketNumber: NgForm): any {
         // TODO: request and store
+        this.storeFacade.user.ticket.fetchTicket(ticketNumber.value.ticket_number);
+        this.storeFacade.user.ticket.getTicket$
+            .pipe(
+                filter((value) => !!value),
+                take(1)
+            )
+            // eslint-disable-next-line no-console
+            .subscribe((value) => console.log(value));
     }
 }

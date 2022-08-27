@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { Ticket } from '../interfaces/models';
+import { ticketActions, ticketSelectors } from './user/ticket';
 
 @Injectable({
     providedIn: 'root'
@@ -7,4 +11,13 @@ import { Store } from '@ngrx/store';
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export class StoreFacadeService {
     constructor(private store$: Store) {}
+
+    public get user() {
+        return {
+            ticket: {
+                getTicket$: ((): Observable<Ticket | null> => this.store$.select(ticketSelectors.getTicket))(),
+                fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber }))
+            }
+        };
+    }
 }
