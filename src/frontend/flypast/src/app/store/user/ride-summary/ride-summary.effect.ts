@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { filter, map, switchMap } from 'rxjs';
+import { filter, forkJoin, map, switchMap, take, tap } from 'rxjs';
 
 import { RideService } from '../../../services/ride.service';
 import { TicketService } from '../../../services/ticket.service';
@@ -43,26 +43,26 @@ export class RideSummaryEffect {
         );
     });
 
-    public storeRide$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(rideSummaryActions.storeRide),
-            concatLatestFrom(() => [this.store$.select(rideSummarySelectors.getRideSummary)]),
-            switchMap(([_, rideSummary]) => {
-                const requests: any[] = [];
-                rideSummary.tickets.forEach((ticket) => {
-                    requests.push(
+    public storeRide$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(rideSummaryActions.storeRide),
+                concatLatestFrom(() => [this.store$.select(rideSummarySelectors.getRideSummary)]),
+                filter(([_, rideSummary]) => rideSummary.slot_number !== null && rideSummary.attraction !== null),
+                tap(([_, rideSummary]) => {
+                    rideSummary.tickets.forEach((ticket) => {
                         this.rideService
                             .storeRide({
                                 ticket_id: ticket.ID,
-                                attraction_id: rideSummary?.attraction?.ID ?? 0,
-                                slot_number: rideSummary?.slot_number ?? 0
+                                attraction_id: rideSummary.attraction?.ID ?? 0,
+                                slot_number: rideSummary.slot_number ?? 0
                             })
-                            .pipe(map((response) => rideSummaryActions.storeRideResponse({ response })))
-                    );
-                });
-
-                return requests;
-            })
-        );
-    });
+                            .pipe(take(1))
+                            .subscribe();
+                    });
+                })
+            );
+        },
+        { dispatch: false }
+    );
 }
