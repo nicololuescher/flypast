@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import {RideSummary} from "../../../interfaces/ride-summary.interface";
-import {rideSummaryActions} from "./ride-summary.actions";
+import { RideSummary } from '../../../interfaces/ride-summary.interface';
+import { rideSummaryActions } from './ride-summary.actions';
 
 export interface RideSummaryState {
     rideSummary: RideSummary;
@@ -32,7 +32,7 @@ const reducer = createReducer(
             ...state,
             rideSummary: {
                 ...state.rideSummary,
-                tickets: [ ...state.rideSummary.tickets, ticket ]
+                tickets: [...state.rideSummary.tickets, ticket]
             }
         };
     }),

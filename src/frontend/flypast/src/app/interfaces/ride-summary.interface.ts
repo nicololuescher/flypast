@@ -1,4 +1,4 @@
-import {Attraction, Ticket} from "./models";
+import { Attraction, Ticket } from './models';
 
 export interface RideSummary {
     attraction: Attraction | null;

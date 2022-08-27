@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 
+import { RideSummary } from '../../../interfaces/ride-summary.interface';
 import { UserState } from '../user.reducer';
 import { userSelector } from '../user.selectors';
-import {RideSummaryState} from "./ride-summary.reducer";
-import {RideSummary} from "../../../interfaces/ride-summary.interface";
+import { RideSummaryState } from './ride-summary.reducer';
 
 const getRideSummaryState = createSelector(userSelector, (state: UserState): RideSummaryState => {
     return state['rideSummary'];
