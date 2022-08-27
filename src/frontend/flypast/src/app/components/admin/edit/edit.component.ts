@@ -25,8 +25,8 @@ export class EditComponent implements OnInit, OnDestroy {
         this.sub2 = this.attractions$.subscribe((attractions) => {
             this.at = attractions?.filter((attraction) => attraction.ID === this.id)[0];
             if (this.at) {
-              this.form?.controls['opening_time'].setValue(this.dateToString(this.at?.start_time_minutes));
-              this.form?.controls['last_ride'].setValue(this.dateToString(this.at?.end_time_minutes));
+                this.form?.controls['opening_time'].setValue(this.dateToString(this.at?.start_time_minutes));
+                this.form?.controls['last_ride'].setValue(this.dateToString(this.at?.end_time_minutes));
             }
             this.form?.controls['ride_duration'].setValue(this.at?.slotduration);
             this.form?.controls['number_of_seats'].setValue(this.at?.max_rides_per_slot);
@@ -34,12 +34,12 @@ export class EditComponent implements OnInit, OnDestroy {
     }
 
     dateToString(time: any) {
-      let hours = new String(time / 60);
-      let min = new String(time % 60);
-      
-      if (hours.length == 1) hours = `0${hours}`;
-      if (min.length == 1) min = `0${min}`;
-      return `${hours}:${min}`;
+        let hours = new String(time / 60);
+        let min = new String(time % 60);
+
+        if (hours.length == 1) hours = `0${hours}`;
+        if (min.length == 1) min = `0${min}`;
+        return `${hours}:${min}`;
     }
 
     onSubmit(loginData: NgForm): any {}

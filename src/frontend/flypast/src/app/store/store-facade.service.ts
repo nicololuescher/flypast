@@ -3,10 +3,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Attraction, Ticket } from '../interfaces/models';
+import { RideSummary } from '../interfaces/ride-summary.interface';
 import { attractionActions, attractionSelectors } from './user/attraction';
+import { rideSummaryActions, rideSummarySelectors } from './user/ride-summary';
 import { ticketActions, ticketSelectors } from './user/ticket';
-import {rideSummaryActions, rideSummarySelectors} from "./user/ride-summary";
-import {RideSummary} from "../interfaces/ride-summary.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -29,11 +29,12 @@ export class StoreFacadeService {
             },
             ride: {
                 getRideSummary$: ((): Observable<RideSummary> => this.store$.select(rideSummarySelectors.getRideSummary))(),
-                storeSelectedAttractionAndTicket: (ticket: Ticket, attraction: Attraction): void => this.store$.dispatch(rideSummaryActions.storeSelectedAttractionAndTicket({ ticket, attraction })),
+                storeSelectedAttractionAndTicket: (ticket: Ticket, attraction: Attraction): void =>
+                    this.store$.dispatch(rideSummaryActions.storeSelectedAttractionAndTicket({ ticket, attraction })),
                 storeAdditionalTicket: (ticket: Ticket): void => this.store$.dispatch(rideSummaryActions.storeAdditionalTicket({ ticket })),
-                storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber( { id })),
-                storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide()),
-            },
+                storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id })),
+                storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
+            }
         };
     }
 }

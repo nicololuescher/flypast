@@ -9,13 +9,13 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
     styleUrls: ['./select-activity.component.css']
 })
 export class SelectActivityComponent implements OnInit {
-    titles = [{ name: 'FIRST FLIEGER' }, { name: 'FIRST GLIDER' }, { name: 'FIRST MOUNTAIN CART' }, { name: 'TROTTIBIKE' }];
+    public attractions$ = this.storeFacade.user.attraction.getAttractions$;
 
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
-    /* eslint-disable */
-    ngOnInit(): void {}
-    /* eslint-enable */
+    ngOnInit(): void {
+        this.storeFacade.user.attraction.fetchAttractions();
+    }
 
     onClickItem(title: string): void {
         // eslint-disable-next-line no-console
