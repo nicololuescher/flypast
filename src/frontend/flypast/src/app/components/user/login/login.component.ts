@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter, take } from 'rxjs';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -25,6 +25,6 @@ export class LoginComponent implements OnInit {
                 filter((value) => !!value),
                 take(1)
             )
-            .subscribe((value) => this.router.navigate(['../ride-selection'], {relativeTo: this.route}));
+            .subscribe((value) => this.router.navigate(['../ride-selection'], { relativeTo: this.route }));
     }
 }

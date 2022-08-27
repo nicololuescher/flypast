@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {StoreFacadeService} from "../../../store/store-facade.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { StoreFacadeService } from '../../../store/store-facade.service';
 
 @Component({
-  selector: 'app-ride-selection',
-  templateUrl: './ride-selection.component.html',
-  styleUrls: ['./ride-selection.component.css']
+    selector: 'app-ride-selection',
+    templateUrl: './ride-selection.component.html',
+    styleUrls: ['./ride-selection.component.css']
 })
 export class RideSelectionComponent implements OnInit {
+    public numberOfRides$ = this.storeFacade.user.ticket.getNumberOfRides$;
+    constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
-    public numberOfRides$ = this.storeFacade.user.ticket.getNumberOfRides$
-  constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute)  {}
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  openSelect() {
-      this.router.navigate(['../select-activity'], {relativeTo: this.route})
-  }
-
+    openSelect(): void {
+        this.router.navigate(['../select-activity'], { relativeTo: this.route });
+    }
 }

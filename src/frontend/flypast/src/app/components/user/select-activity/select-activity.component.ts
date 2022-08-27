@@ -1,26 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-select-activity',
-  templateUrl: './select-activity.component.html',
-  styleUrls: ['./select-activity.component.css']
+    selector: 'app-select-activity',
+    templateUrl: './select-activity.component.html',
+    styleUrls: ['./select-activity.component.css']
 })
 export class SelectActivityComponent implements OnInit {
-  titles = [
-    {name: 'FIRST FLIEGER'}, 
-    {name: 'FIRST GLIDER'}, 
-    {name: 'FIRST MOUNTAIN CART'}, 
-    {name: 'TROTTIBIKE'}
-  ]
+    titles = [{ name: 'FIRST FLIEGER' }, { name: 'FIRST GLIDER' }, { name: 'FIRST MOUNTAIN CART' }, { name: 'TROTTIBIKE' }];
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 
-  onClickItem(title: string) {
-    // eslint-disable-next-line no-console
-    console.log(title);
-  }
-
+    onClickItem(title: string): void {
+        // eslint-disable-next-line no-console
+        console.log(title);
+    }
 }
