@@ -5,7 +5,7 @@
                 <p>Confirm</p>
             </div>
             <div>
-                <p>Flyer</p>
+                <p>{{ attractionName$ | ngrxPush }}</p>
             </div>
             <div>
                 <p>Arrive by:</p>
@@ -15,13 +15,13 @@
             </div>
             <div>
                 <ul>
-                    <p>List of Riders</p>
+                    <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
                 </ul>
             </div>
             <div class="h-10">
                 <div class="flex">
-                    <button class="w-16 h-6 bg-amber-500 rounded">Confirm</button>
-                    <button class="w-16 h-6 bg-amber-500 rounded ml-auto">Cancel</button>
+                    <button (click)="confirm()" class="w-16 h-6 bg-amber-500 rounded">Confirm</button>
+                    <button (click)="cancel()" class="w-16 h-6 bg-amber-500 rounded ml-auto">Cancel</button>
                 </div>
             </div>
         </div>

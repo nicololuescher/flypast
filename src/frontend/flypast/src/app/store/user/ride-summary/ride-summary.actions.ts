@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Attraction, Ride, Ticket } from '../../../interfaces/models';
+import { Attraction, Ticket } from '../../../interfaces/models';
 
 export const rideSummaryActions = {
     storeSelectedAttraction: createAction('[RideSummary] store selected attraction', props<{ id: number }>()),
@@ -11,6 +11,5 @@ export const rideSummaryActions = {
     fetchAdditionalTicket: createAction('[RideSummary] fetch additional ticket', props<{ ticketNumber: string }>()),
     storeAdditionalTicket: createAction('[RideSummary] store additional ticket', props<{ response: Ticket }>()),
     storeSelectedSlotNumber: createAction('[RideSummary] store selected slot number', props<{ id: number }>()),
-    storeRide: createAction('[RideSummary] store ride'),
-    storeRideResponse: createAction('[RideSummary] store ride response', props<{ response: Ride }>())
+    storeRide: createAction('[RideSummary] store ride')
 };

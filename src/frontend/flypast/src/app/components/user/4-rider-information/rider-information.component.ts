@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-rider-information',
@@ -31,7 +31,7 @@ export class RiderInformationComponent implements OnInit {
         ticketNumber.setValue({ ticket_number: '' });
     }
 
-    nextPage() {
+    nextPage(): void {
         this.router.navigate(['../time-slots'], { relativeTo: this.route });
     }
 }

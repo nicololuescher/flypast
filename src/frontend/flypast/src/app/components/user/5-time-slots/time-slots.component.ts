@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { StoreFacadeService } from '../../../store/store-facade.service';
 
 @Component({
     selector: 'app-time-slots',
@@ -6,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./time-slots.component.css']
 })
 export class TimeSlotsComponent implements OnInit {
-    constructor() {}
+    public attractionName$ = this.storeFacadeService.user.ride.getAttractionName$;
+
+    constructor(private storeFacadeService: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
     // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     ngOnInit(): void {}
+
+    selectSlot(id: number): void {
+        this.storeFacadeService.user.ride.storeSelectedSlotNumber(id);
+        this.router.navigate(['../order-summary'], { relativeTo: this.route });
+    }
 }
