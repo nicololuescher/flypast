@@ -18,6 +18,5 @@ export class LoginComponent implements OnInit {
         // eslint-disable-next-line no-console
         console.log(loginData.value);
         this.router.navigate(['../home'], { relativeTo: this.route });
-
     }
 }

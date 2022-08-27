@@ -14,9 +14,5 @@ export class LandingComponent implements OnInit {
     ngOnInit(): void {}
     /* eslint-enable */
 
-    onClickItem(title: string): any {
-
-    }
-
-
+    onClickItem(title: string): any {}
 }
