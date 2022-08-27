@@ -5,12 +5,16 @@ import { LoginComponent } from './login/login.component';
 import {RideSelectionComponent} from "./ride-selection/ride-selection.component";
 import { SelectActivityComponent } from './select-activity/select-activity.component';
 import {RiderInformationComponent} from "./rider-information/rider-information.component";
+import {OrderSummaryComponent} from "./order-summary/order-summary.component";
+import {TimeSlotsComponent} from "./time-slots/time-slots.component";
 
 const routes: Routes = [
     { path: '',   redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'ride-selection', component: RideSelectionComponent },
     { path: 'select-activity', component: SelectActivityComponent },
+    { path: 'order-summary', component: OrderSummaryComponent },
+    { path: 'time-slots', component: TimeSlotsComponent },
     { path: 'rider-information', component: RiderInformationComponent }
 ];
 
