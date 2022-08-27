@@ -1,10 +1,10 @@
-<div class="flex justify-center">
-    <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
-        <label for="ticket_nummer" class="block mb-2 text-sm font-medium">Ticketnummer</label>
+<div class="flex justify-center w-4/5 m-auto">
+    <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm" class="w-full">
+        <label for="ticket_nummer" class="block mb-2 text-sm font-medium"><h2>Ticketnummer</h2></label>
         <input
             type="text"
             id="ticket_nummer"
-            class="bg-gray-50 border mb-3 w-80 border-gray-300 text-sm rounded-lg block p-2.5"
+            class="bg-gray-50 border mb-3 w-full h-16 border-gray-300 text-sm rounded-lg block p-2.5"
             placeholder="Ticketnummer"
             name="ticket_number"
             required

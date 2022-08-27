@@ -1,11 +1,15 @@
-* {
-    @apply text-primary;
-}
-
 .language {
     @apply text-gray-300 hover:bg-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium;
 }
 
 .active-language {
     @apply bg-secondary text-primary;
+}
+
+svg {
+    @apply fill-secondary;
+}
+
+h1 {
+    @apply text-5xl text-secondary;
 }
