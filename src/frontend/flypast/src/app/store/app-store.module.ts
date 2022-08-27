@@ -4,9 +4,6 @@ import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [],
-    imports: [
-        CommonModule,
-        EffectsModule.forFeature([])
-    ]
+    imports: [CommonModule, EffectsModule.forFeature([])]
 })
 export class AppStoreModule {}

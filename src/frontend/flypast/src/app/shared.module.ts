@@ -7,10 +7,6 @@ import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     declarations: [],
     imports: [CommonModule, FormsModule, ReactiveFormsModule, PushModule, TranslateModule.forChild()],
-    exports: [
-        FormsModule,
-        ReactiveFormsModule,
-        PushModule
-    ]
+    exports: [FormsModule, ReactiveFormsModule, PushModule]
 })
 export class SharedModule {}
