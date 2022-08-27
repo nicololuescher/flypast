@@ -2,7 +2,7 @@
     "name": "Trottinets",
     "description": "to trott some nets",
     "image_url": "https://gipfe.li",
-    "coordinates": "232300''23''23",
+    "coordinates": "46.64679578214488, 8.051840904841484",
     "slotduration": 30,
     "start_time_minutes": 480,
     "end_time_minutes": 1080,
