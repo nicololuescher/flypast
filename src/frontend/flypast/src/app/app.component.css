@@ -1,7 +1,11 @@
-.active-language {
-    @apply bg-gray-900 text-white;
+* {
+    @apply text-primary;
 }
 
 .language {
-    @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-gray-300 hover:bg-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium;
+}
+
+.active-language {
+    @apply bg-secondary text-primary;
 }
