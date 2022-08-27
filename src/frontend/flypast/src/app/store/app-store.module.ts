@@ -8,6 +8,7 @@ import { dashboardFeatureKey, dashboardReducer } from './dashboard/dashboard.red
 import { AttractionEffect } from './user/attraction/attraction.effect';
 import { TicketEffect } from './user/ticket';
 import { userFeatureKey, userReducer } from './user/user.reducer';
+import {RideSummaryEffect} from "./user/ride-summary";
 
 @NgModule({
     declarations: [],
@@ -16,7 +17,7 @@ import { userFeatureKey, userReducer } from './user/user.reducer';
         StoreModule.forFeature(adminFeatureKey, adminReducer),
         StoreModule.forFeature(dashboardFeatureKey, dashboardReducer),
         StoreModule.forFeature(userFeatureKey, userReducer),
-        EffectsModule.forFeature([TicketEffect, AttractionEffect])
+        EffectsModule.forFeature([TicketEffect, AttractionEffect, RideSummaryEffect])
     ]
 })
 export class AppStoreModule {}
