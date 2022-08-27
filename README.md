@@ -54,7 +54,12 @@
 
 ### It's a simple web app
 
-*tbd.*
+At the Jungfraubahnen there are many different adventures.  
+People are waiting for their turn to go on an adventure currently.  
+Each day the people are waiting very long for their turn to go on an adventure.  
+Sometimes they are waiting for hours.  
+With FlyPast, people can easily reserve their ride online or in person.  
+So they don't have to wait anymore in the line.
 
 ### It's free
 
@@ -81,7 +86,8 @@ docker-compose up --build
 *Seed Data*
 
 ```bash
-seed/seed.sh # execute seed data on backend api
+cd seed
+./seed.sh # execute seed data on backend api
 ```
 
 Visit [http://localhost:8080](http://localhost:8080)

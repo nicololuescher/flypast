@@ -5,12 +5,12 @@
 
 echo "Seeding the database..."
 
-for file in seed/attractions/*.json; do
+for file in ./attractions/*.json; do
     echo "Seeding $file"
     curl -X POST -H "Content-Type: application/json" -d @$file http://localhost:8000/api/v1/attractions
 done
 
-for file in seed/tickets/*/*.json; do
+for file in ./tickets/*/*.json; do
     echo "Seeding $file"
     curl -X POST -H "Content-Type: application/json" -d @$file http://localhost:8000/api/v1/tickets
 done
