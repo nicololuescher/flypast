@@ -11,5 +11,5 @@ export const rideSummaryActions = {
     fetchAdditionalTicket: createAction('[RideSummary] fetch additional ticket', props<{ ticketNumber: string }>()),
     storeAdditionalTicket: createAction('[RideSummary] store additional ticket', props<{ response: Ticket }>()),
     storeSelectedSlotNumber: createAction('[RideSummary] store selected slot number', props<{ id: number }>()),
-    storeRide: createAction('[RideSummary] store ride'),
+    storeRide: createAction('[RideSummary] store ride')
 };

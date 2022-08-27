@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-time-slots',
@@ -19,6 +19,5 @@ export class TimeSlotsComponent implements OnInit {
     selectSlot(id: number): void {
         this.storeFacadeService.user.ride.storeSelectedSlotNumber(id);
         this.router.navigate(['../order-summary'], { relativeTo: this.route });
-
     }
 }
