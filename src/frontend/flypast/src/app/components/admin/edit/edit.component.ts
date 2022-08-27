@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Attraction } from 'src/app/interfaces/models';
 import { StoreFacadeService } from 'src/app/store/store-facade.service';
+import { AttractionEffect } from 'src/app/store/user/attraction';
 
 @Component({
     selector: 'app-edit',
