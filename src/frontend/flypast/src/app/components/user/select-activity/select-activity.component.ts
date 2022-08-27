@@ -21,7 +21,7 @@ export class SelectActivityComponent implements OnInit {
 
     onClickItem(id: number): any {
         // eslint-disable-next-line no-console
-        this.storeFacade.user.ride.storeSelectedAttraction(id)
+        this.storeFacade.user.ride.storeSelectedAttraction(id);
         console.log(id);
         this.router.navigate(['../rider-information'], { relativeTo: this.route });
     }

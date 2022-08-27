@@ -27,8 +27,8 @@ export class RiderInformationComponent implements OnInit {
     }
 
     onSubmit(ticketNumber: NgForm): any {
-        console.log('Test')
-            this.storeFacade.user.ride.fetchAdditionalTicket(ticketNumber.value.ticket_number);
+        console.log('Test');
+        this.storeFacade.user.ride.fetchAdditionalTicket(ticketNumber.value.ticket_number);
     }
 
     addTicket(ticketNumber: string): void {
