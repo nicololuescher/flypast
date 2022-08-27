@@ -95,6 +95,7 @@ func GetTicketByTicketNumber(c *fiber.Ctx) error {
 		return err
 	}
 
+	// TODO: Check if the ticket is valid
 	if ticket.TicketNumber == "" {
 		// create API GET request on https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/{ticket_number}
 		resp, err := http.Get("https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/" + c.Params("ticket_number"))
