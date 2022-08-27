@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-activity.component.css']
 })
 export class SelectActivityComponent implements OnInit {
+  titles = [
+    {name: 'FIRST FLIEGER'}, 
+    {name: 'FIRST GLIDER'}, 
+    {name: 'FIRST MOUNTAIN CART'}, 
+    {name: 'TROTTIBIKE'}
+  ]
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClickItem(title: string) {
+    // eslint-disable-next-line no-console
+    console.log(title);
   }
 
 }
