@@ -16,6 +16,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: '#213857',
+                primarydisabled: '#c8d4ea',
                 secondary: '#f7d107',
                 lightbg: '#f3f3f3',
                 hoverbg: '#4b83c8',

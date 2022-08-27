@@ -1,5 +1,5 @@
 .language {
-    @apply text-white hover:text-white h-12 px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-white hover:text-white h-12 px-3 py-2 rounded-md text-sm font-medium bg-transparent hover:bg-secondary;
 }
 
 .active-language {

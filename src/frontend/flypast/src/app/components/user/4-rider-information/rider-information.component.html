@@ -1,27 +1,25 @@
-<div class="flex justify-center">
-    <div class="flex justify-center w-2/3">
-        <div class="flex flex-col grow border-2 border-gray-500 p-5 relative">
-            <div>
-                <h1>{{ attractionName$ | ngrxPush }}</h1>
-            </div>
-            <div>
+<h2>Rider Information</h2>
+<div class="flex justify-center mt-32">
+    <div class="flex justify-center floatingbox">
+        <div class="flex flex-col grow p-5 relative">
+                <h3>{{ attractionName$ | ngrxPush }}</h3>
+            <div class="mt-8">
                 <ul>
                     <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
                 </ul>
             </div>
             <div *ngIf="showAddRider" (click)="showInputFields()">
                 <div class="flex">
-                    <div class="relative w-8 h-8 border-2 border-gray-500 rounded-full flex justify-center items-center text-center">+</div>
+                    <div class="relative w-8 h-8 flex justify-center items-center text-center">+</div>
                     <p class="inline-block ml-3">Add Rider</p>
                 </div>
             </div>
             <div *ngIf="showInput">
                 <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
-                    <label for="ticket_nummer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ticketnummer</label>
                     <input
                         type="text"
                         id="ticket_nummer"
-                        class="bg-gray-50 border mb-3 w-80 border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5"
+                        class="border mb-3 w-full block"
                         placeholder="Ticketnummer"
                         name="ticket_number"
                         required
@@ -31,15 +29,15 @@
                     <button
                         type="submit"
                         [disabled]="!ticketNumber.valid"
-                        class="text-white disabled:bg-gray-400 bg-[#213857] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                        class="text-white disabled:bg-primarydisabled bg-primary font-medium rounded-lg text-sm lg:w-1/5 w-full px-5 py-2.5 text-center"
                     >
                         Add Rider
                     </button>
                 </form>
             </div>
-            <div class="h-10">
-                <div class="flex flex-row-reverse">
-                    <button (click)="nextPage()" class="w-16 h-6 bg-amber-500 rounded">Next</button>
+            <div>
+                <div class="flex flex-row-reverse mt-5">
+                    <button (click)="nextPage()" class="h-16 px-16 bg-secondary rounded">Next</button>
                 </div>
             </div>
         </div>

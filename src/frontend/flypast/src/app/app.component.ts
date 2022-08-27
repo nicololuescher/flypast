@@ -9,7 +9,7 @@ import { filter } from 'rxjs';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    activeLanguage = 'de';
+    activeLanguage = 'en';
 
     constructor(private translate: TranslateService, private router: Router) {
         this.translate.setDefaultLang('de');
