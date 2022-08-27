@@ -6,12 +6,13 @@ import {filter, map, switchMap} from 'rxjs';
 import { RideService } from '../../../services/ride.service';
 import { rideSummaryActions } from './ride-summary.actions';
 import { rideSummarySelectors } from './ride-summary.selectors';
-import {ticketSelectors} from "../ticket";
+import { ticketSelectors} from "../ticket";
 import {attractionSelectors} from "../attraction";
+import {TicketService} from "../../../services/ticket.service";
 
 @Injectable()
 export class RideSummaryEffect {
-    constructor(private actions$: Actions, private rideService: RideService, private store$: Store) {}
+    constructor(private actions$: Actions, private rideService: RideService, private store$: Store, private ticketService: TicketService) {}
 
     public storeSelectedAttraction$ = createEffect(() => {
         return this.actions$.pipe(
@@ -29,6 +30,21 @@ export class RideSummaryEffect {
     });
 
     public fetchTicket$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(rideSummaryActions.fetchAdditionalTicket),
+            switchMap((action) => {
+                return this.ticketService.fetchTicket(action.ticketNumber).pipe(
+                    map((response) =>
+                        rideSummaryActions.storeAdditionalTicket({
+                            response
+                        })
+                    )
+                );
+            })
+        );
+    });
+
+    public storeRide$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(rideSummaryActions.storeRide),
             concatLatestFrom(() => [this.store$.select(rideSummarySelectors.getRideSummary)]),

@@ -30,7 +30,7 @@ export class StoreFacadeService {
             ride: {
                 getRideSummary$: ((): Observable<RideSummary> => this.store$.select(rideSummarySelectors.getRideSummary))(),
                 storeSelectedAttraction: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedAttraction({ id })),
-                storeAdditionalTicket: (ticket: Ticket): void => this.store$.dispatch(rideSummaryActions.storeAdditionalTicket({ ticket })),
+                fetchAdditionalTicket: (ticketNumber: string): void => this.store$.dispatch(rideSummaryActions.fetchAdditionalTicket({ ticketNumber })),
                 storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id })),
                 storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
             }

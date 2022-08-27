@@ -27,12 +27,12 @@ const reducer = createReducer(
             }
         };
     }),
-    on(rideSummaryActions.storeAdditionalTicket, (state: RideSummaryState, { ticket }): RideSummaryState => {
+    on(rideSummaryActions.storeAdditionalTicket, (state: RideSummaryState, { response }): RideSummaryState => {
         return {
             ...state,
             rideSummary: {
                 ...state.rideSummary,
-                tickets: [...state.rideSummary.tickets, ticket]
+                tickets: [...state.rideSummary.tickets, response]
             }
         };
     }),
