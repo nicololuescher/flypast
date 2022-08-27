@@ -17,7 +17,13 @@ export class AppComponent {
         // Navigate back to start in case of refresh
         this.router.events.pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd)).subscribe((event) => {
             if (event.id === 1 && event.url === event.urlAfterRedirects) {
-                if (router.url !== '/user/login') {
+                console.log(router.url)
+                console.log(router.url.includes('dashboard'))
+                if (router.url.includes('admin')) {
+                    router.navigate(['admin']);
+                } else if (router.url.includes('dashboard')) {
+                    router.navigate(['dashboard']);
+                } else if (router.url !== '/user/login') {
                     router.navigate(['']);
                 }
             }
