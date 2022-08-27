@@ -13,13 +13,16 @@ export class SelectActivityComponent implements OnInit {
 
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
+    /* eslint-disable */
     ngOnInit(): void {
         this.storeFacade.user.attraction.fetchAttractions();
     }
+    /* eslint-enable */
 
-    onClickItem(title: string): void {
+    onClickItem(id: number): any {
         // eslint-disable-next-line no-console
-        console.log(title);
+        this.storeFacade.user.ride.storeSelectedAttraction(id)
+        console.log(id);
         this.router.navigate(['../rider-information'], { relativeTo: this.route });
     }
 }
