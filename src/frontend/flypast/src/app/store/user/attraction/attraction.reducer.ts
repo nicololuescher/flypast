@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import {Attraction, } from '../../../interfaces/models';
-import {attractionActions} from "./attraction.actions";
+import { Attraction } from '../../../interfaces/models';
+import { attractionActions } from './attraction.actions';
 
 export interface AttractionState {
     attractions: Attraction[] | null;

@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 
-import {Attraction} from '../../../interfaces/models';
+import { Attraction } from '../../../interfaces/models';
 import { UserState } from '../user.reducer';
 import { userSelector } from '../user.selectors';
-import {AttractionState} from "./attraction.reducer";
+import { AttractionState } from './attraction.reducer';
 
 const getAttractionState = createSelector(userSelector, (state: UserState): AttractionState => {
     return state['attractions'];

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 
-import {attractionActions} from "./attraction.actions";
-import {AttractionService} from "../../../services/attraction.service";
+import { AttractionService } from '../../../services/attraction.service';
+import { attractionActions } from './attraction.actions';
 
 @Injectable()
 export class AttractionEffect {

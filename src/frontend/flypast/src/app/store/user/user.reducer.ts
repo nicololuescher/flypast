@@ -1,7 +1,7 @@
 import { combineReducers } from '@ngrx/store';
 
+import { attractionReducer, AttractionState } from './attraction/attraction.reducer';
 import { ticketReducer, TicketState } from './ticket/ticket.reducer';
-import {attractionReducer, AttractionState} from "./attraction/attraction.reducer";
 
 export const userFeatureKey = 'user';
 

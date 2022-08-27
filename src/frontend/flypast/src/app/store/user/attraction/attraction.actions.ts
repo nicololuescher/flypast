@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import {Attraction} from '../../../interfaces/models';
+import { Attraction } from '../../../interfaces/models';
 
 export const attractionActions = {
     fetchAttractions: createAction('[Attraction] fetch attractions'),
