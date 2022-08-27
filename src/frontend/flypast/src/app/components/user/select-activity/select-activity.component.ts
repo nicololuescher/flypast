@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {StoreFacadeService} from "../../../store/store-facade.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { StoreFacadeService } from '../../../store/store-facade.service';
 
 @Component({
     selector: 'app-select-activity',

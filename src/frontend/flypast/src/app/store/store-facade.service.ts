@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Ticket } from '../interfaces/models';
+import { Attraction, Ticket } from '../interfaces/models';
+import { attractionActions, attractionSelectors } from './user/attraction';
 import { ticketActions, ticketSelectors } from './user/ticket';
 
 @Injectable({
@@ -19,6 +20,10 @@ export class StoreFacadeService {
                 getNumberOfRides$: ((): Observable<number | null> => this.store$.select(ticketSelectors.getNumberOfRides))(),
                 getTicketNumber$: ((): Observable<string | null> => this.store$.select(ticketSelectors.getTicketNumber))(),
                 fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber }))
+            },
+            attraction: {
+                getAttractions$: ((): Observable<Attraction[] | null> => this.store$.select(attractionSelectors.getAttractions))(),
+                fetchAttractions: (): void => this.store$.dispatch(attractionActions.fetchAttractions())
             }
         };
     }

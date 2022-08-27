@@ -1,38 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import {StoreFacadeService} from "../../../store/store-facade.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { StoreFacadeService } from '../../../store/store-facade.service';
 
 @Component({
-  selector: 'app-rider-information',
-  templateUrl: './rider-information.component.html',
-  styleUrls: ['./rider-information.component.css']
+    selector: 'app-rider-information',
+    templateUrl: './rider-information.component.html',
+    styleUrls: ['./rider-information.component.css']
 })
 export class RiderInformationComponent implements OnInit {
+    ticketArray: string[] = [];
+    showAddRider = true;
+    showInput = false;
+    constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
-    ticketArray:string[] = []
-    showAddRider = true
-    showInput = false
-  constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+    openTimeSelect(): void {
+        this.router.navigate(['../select-activity'], { relativeTo: this.route });
+    }
 
-  openTimeSelect(): void {
-      this.router.navigate(['../select-activity'], { relativeTo: this.route });
-  }
-
-  showInputFields(): void {
+    showInputFields(): void {
         this.showInput = true;
         this.showAddRider = false;
-  }
+    }
 
-  onSubmit(ticketNumber: NgForm): any {
+    onSubmit(ticketNumber: NgForm): any {}
 
-  }
-
-  addTicket(ticketNumber: String): void {
-        this.ticketArray.push("ticketNumber");
-  }
-
+    addTicket(ticketNumber: String): void {
+        this.ticketArray.push('ticketNumber');
+    }
 }
