@@ -23,5 +23,6 @@ jobs:
 
       - name: npm install and npm run build
         run: |
+          cd ./src/frontend/flypast
           npm ci
           npm run build
