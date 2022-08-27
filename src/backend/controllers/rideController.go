@@ -35,13 +35,15 @@ func CreateRide(c *fiber.Ctx) error {
 		return err
 	}
 
-	// Check if the ride already exists with ride_number
+	// Check if the ride already exists with slot_number
 	var existingRide models.Ride
-	if err := database.DBConn.Where("ride_number = ?", ride.RideNumber).First(&existingRide).Error; err == nil {
+	if err := database.DBConn.Where("slot_number = ?", ride.SlotNumber).First(&existingRide).Error; err == nil {
 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
 			"message": "Ride already exists",
 		})
 	}
+
+	// TODO Validate existing rides and date
 
 	if err := database.DBConn.Create(&ride).Error; err != nil {
 		return err

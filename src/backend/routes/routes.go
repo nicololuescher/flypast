@@ -15,6 +15,8 @@ func Setup(app *fiber.App) {
 	v1.Post("/auth", controllers.Login)
 	v1.Get("/auth", controllers.CheckLogin)
 
+	// TODO: authorization by ticketnumber in body
+
 	// Ticket
 	v1.Get("/tickets", controllers.GetTickets)
 	v1.Get("/tickets/:id", controllers.GetTicket)
@@ -28,6 +30,8 @@ func Setup(app *fiber.App) {
 	v1.Post("/attractions", controllers.CreateAttraction)
 	v1.Put("/attractions/:id", controllers.UpdateAttraction)
 	v1.Delete("/attractions/:id", controllers.DeleteAttraction)
+	v1.Get("/attractions/:id/rides", controllers.GetAttractionRides)
+	v1.Get("/attractions/:id/free_rides/:date_day", controllers.GetAttractionFreeRidesBySlotsByDate)
 
 	// Ride
 	v1.Get("/rides", controllers.GetRides)
