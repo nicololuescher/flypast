@@ -36,5 +36,6 @@ func InitDB() error {
 	DBConn.Debug().AutoMigrate(&models.Attraction{})
 	DBConn.Debug().AutoMigrate(&models.Ride{})
 	DBConn.Debug().AutoMigrate(&models.Activity{})
+	DBConn.Debug().AutoMigrate(&models.Dashboard{})
 	return nil
 }

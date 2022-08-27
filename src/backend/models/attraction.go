@@ -13,3 +13,8 @@ type Attraction struct {
 	EndTimeMinutes   int    `json:"end_time_minutes"`
 	MaxRidesPerSlot  int    `json:"max_rides_per_slot"`
 }
+
+type AttractionFreeRides struct {
+	Attraction       Attraction
+	FreeRidesPerSlot []FreeRidesPerSlot
+}
