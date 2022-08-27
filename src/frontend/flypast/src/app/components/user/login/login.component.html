@@ -1,0 +1,26 @@
+<div class="grid grid-cols-3 grid-rows-3 place-items-center h-screen">
+    <div class="col-start-2 row-start-2">
+        <div class="text-5xl">
+            <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
+                <label for="ticket_nummer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ticketnummer</label>
+                <input
+                    type="text"
+                    id="ticket_nummer"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    placeholder="Ticketnummer"
+                    name="ticket_number"
+                    required
+                    minlength="10"
+                    ngModel
+                />
+                <button
+                    type="submit"
+                    [disabled]="!ticketNumber.valid"
+                    class="text-white disabled:bg-gray-400 bg-[#213857] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                >
+                    Weiter
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
