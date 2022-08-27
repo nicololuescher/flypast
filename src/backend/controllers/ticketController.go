@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"net/http"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
@@ -95,25 +95,21 @@ func GetTicketByTicketNumber(c *fiber.Ctx) error {
 		return err
 	}
 
-	// TODO: Check if the ticket is valid
+	// TODO: Check if the ticket is valid by quering the webshop API
 	if ticket.TicketNumber == "" {
-		// create API GET request on https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/{ticket_number}
-		resp, err := http.Get("https://c6eb12aa-83d9-4ddd-9cc7-cfdf9fbce453.mock.pstmn.io/mockapi/tickets/" + c.Params("ticket_number"))
-		if err != nil {
-			return err
-		}
-		defer resp.Body.Close()
+		// get local date format yyyy-mm-dd
+		localDate := time.Now().Format("2006-01-02")
 
-		// Parse the response body into a ticket
-		if err := c.BodyParser(&ticket); err != nil {
-			return err
-		}
-		if err := database.DBConn.Create(&ticket).Error; err != nil {
-			return err
+		// create ticket in database with localDate
+		tempTicket := models.Ticket{
+			TicketNumber:  c.Params("ticket_number"),
+			ValidAtDay:    localDate,
+			NumberOfRides: 4,
 		}
 
-		// Return the ticket as JSON
-		return c.JSON(ticket)
+		if err := database.DBConn.Create(&tempTicket).Error; err != nil {
+			return err
+		}
 	}
 
 	// Return the ticket as JSON
