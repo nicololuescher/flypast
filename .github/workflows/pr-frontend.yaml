@@ -1,0 +1,27 @@
+name: CI Frontend
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Node $
+        uses: actions/setup-node@v1
+        with:
+          node-version: $
+
+      - name: npm install and npm run build
+        run: |
+          npm ci
+          npm run build
