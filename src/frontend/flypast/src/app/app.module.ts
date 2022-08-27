@@ -9,8 +9,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AdminComponent } from './components/admin/admin.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppStoreModule } from './store/app-store.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -18,7 +16,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-    declarations: [AppComponent, DashboardComponent, AdminComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

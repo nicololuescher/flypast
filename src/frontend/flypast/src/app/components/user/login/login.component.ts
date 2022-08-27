@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
                 filter((value) => !!value),
                 take(1)
             )
-            // eslint-disable-next-line no-console
             .subscribe((value) => this.router.navigate(['../ride-selection'], {relativeTo: this.route}));
     }
 }
