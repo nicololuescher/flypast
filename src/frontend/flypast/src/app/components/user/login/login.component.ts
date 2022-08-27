@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { filter, take } from 'rxjs';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -10,7 +11,7 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    constructor(private storeFacade: StoreFacadeService) {}
+    constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
     /* eslint-disable */
     ngOnInit(): void {}
@@ -25,6 +26,6 @@ export class LoginComponent implements OnInit {
                 take(1)
             )
             // eslint-disable-next-line no-console
-            .subscribe((value) => console.log(value));
+            .subscribe((value) => this.router.navigate(['../ride-selection'], {relativeTo: this.route}));
     }
 }

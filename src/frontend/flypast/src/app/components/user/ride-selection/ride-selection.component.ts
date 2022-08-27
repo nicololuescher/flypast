@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RideSelectionComponent implements OnInit {
 
-    test = 3;
+
   constructor() { }
 
   ngOnInit(): void {
