@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"math"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
@@ -137,13 +138,20 @@ func GetFreeRidesBySlotsByAttraction(attractionID string, ticketID string) ([]mo
 	var freeRidesPerSlotArray []models.FreeRidesPerSlot
 
 	for i := 0; i < numberOfSlots; i++ {
+		// check if date is in the future, if yes only show 66% of free slots/rides
+		localDate := time.Now().Format("2006-01-02")
+
+		if ticket.ValidAtDay != localDate && i%3 == 2 {
+			continue
+		}
+
 		freeRidesPerSlotArray = append(freeRidesPerSlotArray, models.FreeRidesPerSlot{
 			SlotNumber: i,
 			FreeRides:  attraction.MaxRidesPerSlot,
 		})
 		if len(rides) > 0 {
 			for _, ride := range rides {
-				if ride.SlotNumber == i {
+				if ride.SlotNumber == i && i%3 == 2 {
 					freeRidesPerSlotArray[i].FreeRides = freeRidesPerSlotArray[i].FreeRides - 1
 				}
 			}
