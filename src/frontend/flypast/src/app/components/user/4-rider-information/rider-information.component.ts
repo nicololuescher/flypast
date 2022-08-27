@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-rider-information',
@@ -12,16 +12,14 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
 export class RiderInformationComponent implements OnInit {
     public attractionName$ = this.storeFacade.user.ride.getAttractionName$;
     public ticketArray$ = this.storeFacade.user.ride.getTicketArray$;
+
     showAddRider = true;
     showInput = false;
+
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
     // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     ngOnInit(): void {}
-
-    openTimeSelect(): void {
-        this.router.navigate(['../select-activity'], { relativeTo: this.route });
-    }
 
     showInputFields(): void {
         this.showInput = true;
@@ -31,5 +29,9 @@ export class RiderInformationComponent implements OnInit {
     onSubmit(ticketNumber: NgForm): void {
         this.storeFacade.user.ride.fetchAdditionalTicket(ticketNumber.value.ticket_number);
         ticketNumber.setValue({ ticket_number: '' });
+    }
+
+    nextPage() {
+        this.router.navigate(['../time-slots'], { relativeTo: this.route });
     }
 }
