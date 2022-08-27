@@ -12,6 +12,7 @@ export class RideSelectionComponent implements OnInit {
     public numberOfRides$ = this.storeFacade.user.ticket.getNumberOfRides$;
     constructor(private storeFacade: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
+    // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     ngOnInit(): void {}
 
     openSelect(): void {
