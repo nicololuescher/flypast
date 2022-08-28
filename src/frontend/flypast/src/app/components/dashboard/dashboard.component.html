@@ -1,20 +1,8 @@
-<div class="flex justify-center">
+<div class="flex justify-center mt-16">
     <div class="flex flex-col">
-        <div class="flex justify-end">
-            <div *ngFor="let ob of object" class="item w-64 h-auto flex-auto text-center">
-                <h1>{{ ob.Attraction.name }}</h1>
-            </div>
+        <div *ngFor="let ob of object | ngrxPush" class="w-96 h-20 rounded-3xl bg-secondary text-primary rounded-md flex items-center hoverable m-2 p-4">
+            <h1 class="text-4xl">{{ ob.name }}:</h1>
+            <h1 class="ml-auto text-4xl">{{ ob.free }}/{{ ob.ges }}</h1>
         </div>
-    </div>
-</div>
-
-<div class="flex justify-center">
-    <div class="grid overflow-hidden grid-cols-4 grid-rows-5 gap-2 w-full text-center">
-        <div class="box col-start-1 col-end-1">
-            
-        </div>
-        <div class="box col-start-2 col-end-2">2</div>
-        <div class="box col-start-3 col-end-3">3</div>
-        <div class="box col-start-4 col-end-4">4</div>
     </div>
 </div>
