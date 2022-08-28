@@ -34,8 +34,8 @@ function parseAttractions(slots: FreeSlotHttp[], attraction: Attraction, numberO
 }
 
 function intToDate(time: number): string {
-    let hours = String(time / 60);
-    let min = String(time % 60);
+    let hours = String(Math.floor(time / 60));
+    let min = String(Math.floor(time % 60));
 
     if (hours.length == 1) hours = `0${hours}`;
     if (min.length == 1) min = `0${min}`;
