@@ -14,7 +14,9 @@ export class TimeSlotsComponent implements OnInit {
     constructor(private storeFacadeService: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 
     // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.storeFacadeService.user.freeSlots.fetchFreeSlots();
+    }
 
     selectSlot(id: number): void {
         this.storeFacadeService.user.ride.storeSelectedSlotNumber(id);

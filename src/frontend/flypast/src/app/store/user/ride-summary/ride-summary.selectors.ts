@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 
-import { Ticket } from '../../../interfaces/models';
+import {Attraction, Ticket} from '../../../interfaces/models';
 import { RideSummary } from '../../../interfaces/ride-summary.interface';
 import { UserState } from '../user.reducer';
 import { userSelector } from '../user.selectors';
@@ -14,6 +14,10 @@ const getRideSummary = createSelector(getRideSummaryState, (state: RideSummarySt
     return state.rideSummary;
 });
 
+const getAttraction = createSelector(getRideSummary, (rideSummary: RideSummary): Attraction | null => {
+    return rideSummary.attraction ?? null;
+});
+
 const getAttractionName = createSelector(getRideSummary, (rideSummary: RideSummary): string | null => {
     return rideSummary.attraction?.name ?? null;
 });
@@ -22,8 +26,14 @@ const getTicketArray = createSelector(getRideSummary, (rideSummary: RideSummary)
     return rideSummary.tickets ?? null;
 });
 
+const getTicketCount = createSelector(getTicketArray, (tickets: Ticket[] | null): number| null => {
+    return tickets?.length ?? null;
+});
+
 export const rideSummarySelectors = {
     getRideSummary,
     getAttractionName,
-    getTicketArray
+    getAttraction,
+    getTicketArray,
+    getTicketCount
 };

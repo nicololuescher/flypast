@@ -7,6 +7,8 @@ import { RideSummary } from '../interfaces/ride-summary.interface';
 import { attractionActions, attractionSelectors } from './user/attraction';
 import { rideSummaryActions, rideSummarySelectors } from './user/ride-summary';
 import { ticketActions, ticketSelectors } from './user/ticket';
+import {freeSlotsActions, freeSlotsSelectors} from "./user/free-slots";
+import {FreeSlot} from "../interfaces/free-slots.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -36,6 +38,10 @@ export class StoreFacadeService {
                     this.store$.dispatch(rideSummaryActions.fetchAdditionalTicket({ ticketNumber })),
                 storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id })),
                 storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
+            },
+            freeSlots: {
+                getFreeSlots$: ((): Observable<FreeSlot[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),
+                fetchFreeSlots: (): void => this.store$.dispatch(freeSlotsActions.fetchFreeSlots())
             }
         };
     }
