@@ -4,6 +4,7 @@
         <div *ngFor="let ride of rides$ | ngrxPush" class="group w-4/5 h-48 border-2 rounded border-gray-500 flex flex-col justify-center items-center text-center m-auto mb-8">
             <h2>{{ ride.attraction?.name }}</h2>
             <h3>Arrive by: {{ ride.slot_text }}</h3>
+            <a routerLink="../map" class="text-primary hover:text-secondary text-xl">Map</a>
         </div>
         <div
             *ngFor="let i of [].constructor(numberOfRides$ | ngrxPush)"

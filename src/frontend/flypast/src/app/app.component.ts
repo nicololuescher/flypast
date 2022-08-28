@@ -21,7 +21,10 @@ export class AppComponent {
                     router.navigate(['admin']);
                 } else if (router.url.includes('dashboard')) {
                     router.navigate(['dashboard']);
-                } else if (router.url !== '/user/login') {
+                } else if (router.url.includes('map')) {
+                    return;
+                }
+                else if (router.url !== '/user/login') {
                     router.navigate(['']);
                 }
             }
