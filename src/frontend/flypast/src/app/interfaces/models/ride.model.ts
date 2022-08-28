@@ -5,3 +5,9 @@ export interface Ride extends Base {
     ticket_id: number;
     slot_number: number;
 }
+
+export interface RideContent {
+    attraction_id: number;
+    ticket_id: number;
+    slot_number: number;
+}

@@ -18,13 +18,15 @@ export class LoginComponent implements OnInit {
     /* eslint-enable */
 
     onSubmit(ticketNumber: NgForm): any {
-        // TODO: request and store
         this.storeFacade.user.ticket.fetchTicket(ticketNumber.value.ticket_number);
         this.storeFacade.user.ticket.getTicket$
             .pipe(
                 filter((value) => !!value),
                 take(1)
             )
-            .subscribe((value) => this.router.navigate(['../ride-selection'], { relativeTo: this.route }));
+            .subscribe((value) => {
+                this.storeFacade.user.ride.storeStillOpen(value?.number_of_rides ?? 0);
+                this.router.navigate(['../ride-selection'], { relativeTo: this.route });
+            });
     }
 }

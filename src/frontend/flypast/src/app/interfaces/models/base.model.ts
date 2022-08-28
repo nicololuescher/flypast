@@ -4,3 +4,9 @@ export interface Base {
     UpdatedAt: Date;
     DeletedAt: Date;
 }
+
+export interface BaseDates {
+    CreatedAt: Date;
+    UpdatedAt: Date;
+    DeletedAt: Date;
+}

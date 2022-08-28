@@ -1,7 +1,15 @@
-.active-language {
-    @apply bg-gray-900 text-white;
+.language {
+    @apply text-white hover:text-white h-12 px-3 py-2 rounded-md text-sm font-medium bg-transparent hover:bg-secondary;
 }
 
-.language {
-    @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium;
+.active-language {
+    @apply bg-secondary text-primary hover:text-primary;
+}
+
+svg {
+    @apply fill-secondary;
+}
+
+h1 {
+    @apply text-5xl text-secondary;
 }

@@ -3,3 +3,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h2 {
+    @apply text-4xl;
+}
+
+h3 {
+    @apply text-3xl;
+}
+
+button {
+    @apply transition hover:bg-hoverbg hover:text-white h-16 text-lg bg-secondary px-16 rounded;
+}
+
+.hoverable {
+    @apply transition hover:bg-hoverbg cursor-pointer ;
+}
+
+.hoverable:hover > * {
+    @apply transition border-white border-white text-white;
+}
+
+.floatingbox{
+    @apply border-2 rounded border-primary w-4/5;
+}
+
+input, [type='text']{
+    @apply rounded;
+}
+
+input:focus{
+    @apply transition outline-primary outline-2;
+}

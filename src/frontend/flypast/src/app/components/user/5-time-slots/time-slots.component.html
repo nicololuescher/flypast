@@ -1,0 +1,23 @@
+<h2>Choose Time Slot</h2>
+<div class="flex justify-center mt-32">
+    <div class="flex justify-center floatingbox">
+        <div class="flex flex-col grow p-5 relative">
+            <div>
+                <h3>{{ attractionName$ | ngrxPush }}</h3>
+            </div>
+            <div class="mt-5">
+                <button (click)="selectFirstSlot()" class="lg:w-2/5 w-full">Next Possible Slot</button>
+            </div>
+            <div class="mt-5">
+                <ng-container *ngFor="let chunk of freeChunks$ | ngrxPush">
+                    <div *ngIf="chunk.free" (click)="selectSlot(chunk.slots[0].slot_number, chunk.slots[0].time)" class="timeslot open">
+                        <h4>{{ chunk.time }}</h4>
+                    </div>
+                    <div *ngIf="!chunk.free" class="timeslot closed">
+                        <h4>{{ chunk.time }}</h4>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

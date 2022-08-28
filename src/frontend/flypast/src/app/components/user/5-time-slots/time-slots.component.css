@@ -1,0 +1,28 @@
+.timeslot {
+    @apply w-full h-12 justify-center items-center flex;
+}
+
+.timeslot:not(:last-child){
+    @apply border-b-2 border-b-primary;
+}
+
+.timeslot:first-child {
+    @apply rounded-t;
+}
+
+.timeslot:last-child{
+    @apply rounded-b;
+}
+
+.open {
+    @apply bg-secondary cursor-pointer;
+}
+
+.open:hover {
+    @apply bg-hoverbg text-white;
+}
+
+.closed {
+    @apply bg-lightbg cursor-not-allowed
+
+}

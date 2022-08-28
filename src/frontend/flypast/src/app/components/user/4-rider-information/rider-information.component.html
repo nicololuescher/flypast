@@ -1,0 +1,36 @@
+<h2>Rider Information</h2>
+<div class="flex justify-center mt-32">
+    <div class="flex justify-center floatingbox">
+        <div class="flex flex-col grow p-5 relative">
+            <h3>{{ attractionName$ | ngrxPush }}</h3>
+            <div class="mt-8">
+                <ul>
+                    <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
+                </ul>
+            </div>
+            <div *ngIf="showAddRider" (click)="showInputFields()">
+                <div class="flex">
+                    <div class="relative w-8 h-8 flex justify-center items-center text-center">+</div>
+                    <p class="inline-block ml-3">Add Rider</p>
+                </div>
+            </div>
+            <div *ngIf="showInput">
+                <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
+                    <input type="text" id="ticket_nummer" class="border mb-3 w-full block" placeholder="Ticketnummer" name="ticket_number" required minlength="10" ngModel />
+                    <button
+                        type="submit"
+                        [disabled]="!ticketNumber.valid"
+                        class="text-white disabled:bg-primarydisabled bg-primary font-medium rounded-lg text-sm lg:w-1/5 w-full px-5 py-2.5 text-center"
+                    >
+                        Add Rider
+                    </button>
+                </form>
+            </div>
+            <div>
+                <div class="flex flex-row-reverse mt-5">
+                    <button (click)="nextPage()" class="h-16 px-16 bg-secondary rounded">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

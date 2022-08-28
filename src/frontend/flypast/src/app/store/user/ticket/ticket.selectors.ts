@@ -1,4 +1,5 @@
 import { createSelector } from '@ngrx/store';
+import { format } from 'date-fns';
 
 import { Ticket } from '../../../interfaces/models';
 import { UserState } from '../user.reducer';
@@ -13,11 +14,29 @@ const getTicket = createSelector(getTicketState, (state: TicketState): Ticket | 
     return state.ticket;
 });
 
+const getTicketId = createSelector(getTicket, (ticket: Ticket | null): number | null => {
+    return ticket?.ID ?? null;
+});
+
 const getNumberOfRides = createSelector(getTicket, (ticket: Ticket | null): number | null => {
     return ticket?.number_of_rides ?? null;
 });
 
+const getTicketNumber = createSelector(getTicket, (ticket: Ticket | null): string | null => {
+    return ticket?.ticket_number ?? null;
+});
+
+const getTicketDateUi = createSelector(getTicket, (ticket: Ticket | null): string | null => {
+    if (!ticket || !ticket.valid_at_day) {
+        return null;
+    }
+    return format(ticket.valid_at_day, 'dd.MM.y');
+});
+
 export const ticketSelectors = {
     getTicket,
-    getNumberOfRides
+    getTicketId,
+    getNumberOfRides,
+    getTicketNumber,
+    getTicketDateUi
 };
