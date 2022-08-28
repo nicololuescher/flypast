@@ -1,13 +1,13 @@
 version: "3.9"
 services:
   frontend:
-    build: src/frontend/flypast
+    image: ghcr.io/nicololuescher/flypast-frontend:latest
     links:
       - api
     ports:
       - "8080:80"
   api:
-    build: src/backend
+    image: ghcr.io/nicololuescher/flypast-backend:latest
     ports:
       - "8000:8000"
     environment:
@@ -32,7 +32,7 @@ services:
       timeout: 5s
       retries: 5
   seed:
-    build: seed
+    image: ghcr.io/nicololuescher/flypast-seed:latest
     depends_on:
       - frontend
       - api
