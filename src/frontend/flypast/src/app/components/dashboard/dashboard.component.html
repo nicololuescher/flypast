@@ -1,9 +1,8 @@
-<div class="flex justify-center">
-    <div class="flex flex-col">
-        <div class="flex justify-end">
-            <div *ngFor="let at of attentions" class="item w-64 h-auto flex-auto">
-                <h1>{{ at.name }}</h1>
-            </div>
+<div class="flex justify-center mt-16">
+    <div class="flex flex-col w-full items-center">
+        <div *ngFor="let ob of object" id="{{ob.Attraction.ID}}" class="w-2/3 bg h-20 rounded-3xl {{color}} text-primary rounded-md hover:bg-primary flex items-center hoverable m-2 p-4">
+            <h1 class="text-4xl">{{ ob.Attraction.name }}:</h1>
+            <h1 class="ml-auto text-4xl">{{ ob.TotalSlots - ob.ReservedSlots }}/{{ ob.TotalSlots }}</h1>
         </div>
     </div>
 </div>
