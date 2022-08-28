@@ -46,6 +46,14 @@
   </em>
 </p>
 
+<p align="center">
+  <img
+    src="assets/FlyPast_Demo_Screen_Recording.gif"
+    alt="Gif"
+    width="600"
+  />
+</p>
+
 <h2></h2>
 <p>&nbsp;</p>
 
