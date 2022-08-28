@@ -60,10 +60,10 @@ const reducer = createReducer(
     on(rideSummaryActions.persistRide, (state: RideSummaryState, { ride }): RideSummaryState => {
         return {
             ...state,
-            rideConfirmed: [ ...state.rideConfirmed, ride ],
+            rideConfirmed: [...state.rideConfirmed, ride],
             stillOpen: state.stillOpen ? state.stillOpen - 1 : null
         };
-    }),
+    })
 );
 
 export function rideSummaryReducer(state: RideSummaryState | undefined, action: Action): RideSummaryState {

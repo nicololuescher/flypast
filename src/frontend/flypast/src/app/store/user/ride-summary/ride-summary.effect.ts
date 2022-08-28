@@ -43,31 +43,32 @@ export class RideSummaryEffect {
         );
     });
 
-    public storeRide$ = createEffect(
-        () => {
-            return this.actions$.pipe(
-                ofType(rideSummaryActions.storeRide),
-                concatLatestFrom(() => [
-                    this.store$.select(rideSummarySelectors.getRideSummary),
-                    this.store$.select(ticketSelectors.getTicket),
-                    this.store$.select(rideSummarySelectors.getPersistedRidesCount),
-                ]),
-                filter(([_, rideSummary, ticket, ridesCount]) => rideSummary.slot_number !== null && rideSummary.attraction !== null && (ticket?.number_of_rides ?? 0) > ridesCount),
-                map(([_, rideSummary]) => {
-                    rideSummary.tickets.forEach((ticket) => {
-                        this.rideService
-                            .storeRide({
-                                ticket_id: ticket.ID,
-                                attraction_id: rideSummary.attraction?.ID ?? 0,
-                                slot_number: rideSummary.slot_number ?? 0
-                            })
-                            .pipe(take(1))
-                            .subscribe();
-                    });
+    public storeRide$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(rideSummaryActions.storeRide),
+            concatLatestFrom(() => [
+                this.store$.select(rideSummarySelectors.getRideSummary),
+                this.store$.select(ticketSelectors.getTicket),
+                this.store$.select(rideSummarySelectors.getPersistedRidesCount)
+            ]),
+            filter(
+                ([_, rideSummary, ticket, ridesCount]) =>
+                    rideSummary.slot_number !== null && rideSummary.attraction !== null && (ticket?.number_of_rides ?? 0) > ridesCount
+            ),
+            map(([_, rideSummary]) => {
+                rideSummary.tickets.forEach((ticket) => {
+                    this.rideService
+                        .storeRide({
+                            ticket_id: ticket.ID,
+                            attraction_id: rideSummary.attraction?.ID ?? 0,
+                            slot_number: rideSummary.slot_number ?? 0
+                        })
+                        .pipe(take(1))
+                        .subscribe();
+                });
 
-                    return rideSummaryActions.persistRide({ ride: rideSummary });
-                })
-            );
-        }
-    );
+                return rideSummaryActions.persistRide({ ride: rideSummary });
+            })
+        );
+    });
 }

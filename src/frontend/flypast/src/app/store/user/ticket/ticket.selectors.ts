@@ -30,7 +30,7 @@ const getTicketDateUi = createSelector(getTicket, (ticket: Ticket | null): strin
     if (!ticket || !ticket.valid_at_day) {
         return null;
     }
-    return  format(ticket.valid_at_day, 'dd.MM.y');
+    return format(ticket.valid_at_day, 'dd.MM.y');
 });
 
 export const ticketSelectors = {

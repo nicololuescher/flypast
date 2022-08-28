@@ -24,7 +24,9 @@ function parseAttractions(slots: FreeSlotHttp[], attraction: Attraction, numberO
         chunks[i / 30] = { slots: [], time: intToDate(i + attraction.start_time_minutes), free: false };
         while (!!sortedArray[currentIndex] && sortedArray[currentIndex].slot_number * attraction.slotduration < i + 30) {
             if (sortedArray[currentIndex].free_rides >= numberOfTickets) {
-                const slotTime = intToDate(attraction.start_time_minutes + attraction.slotduration * sortedArray[currentIndex].slot_number - 5)
+                const slotTime = intToDate(
+                    attraction.start_time_minutes + attraction.slotduration * sortedArray[currentIndex].slot_number - 5
+                );
                 chunks[i / 30].slots.push({ ...sortedArray[currentIndex], time: slotTime });
                 chunks[i / 30].free = true;
             }
