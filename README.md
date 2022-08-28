@@ -32,7 +32,6 @@
 <p align="center">
   <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/nicololuescher/flypast/CI%20Backend/main?label=ci%20backend">
   <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/nicololuescher/flypast/CI%20Frontend/main?label=ci%20frontend">
-  <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/nicololuescher/flypast/Docker%20Image%20Build%20&%20Push/main?label=docker%20image%20build%20%26%20push">
   <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/nicololuescher/flypast/CodeQL/main?label=CodeQL">
 </p>
 
