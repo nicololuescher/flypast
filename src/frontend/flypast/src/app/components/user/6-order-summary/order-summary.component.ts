@@ -11,6 +11,8 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
 export class OrderSummaryComponent implements OnInit {
     public attractionName$ = this.storeFacadeService.user.ride.getAttractionName$;
     public ticketArray$ = this.storeFacadeService.user.ride.getTicketArray$;
+    public arriveByTime$ = this.storeFacadeService.user.ride.getArriveByTime$;
+    public date$ = this.storeFacadeService.user.ticket.getTicketDateUi$;
 
     constructor(private storeFacadeService: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 

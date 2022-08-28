@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { FreeChunk } from '../interfaces/free-slots.interface';
+import {FreeChunk, FreeSlot} from '../interfaces/free-slots.interface';
 import { Attraction, Ticket } from '../interfaces/models';
 import { RideSummary } from '../interfaces/ride-summary.interface';
 import { attractionActions, attractionSelectors } from './user/attraction';
@@ -21,6 +21,7 @@ export class StoreFacadeService {
         return {
             ticket: {
                 getTicket$: ((): Observable<Ticket | null> => this.store$.select(ticketSelectors.getTicket))(),
+                getTicketDateUi$: ((): Observable<string | null> => this.store$.select(ticketSelectors.getTicketDateUi))(),
                 getNumberOfRides$: ((): Observable<number | null> => this.store$.select(ticketSelectors.getNumberOfRides))(),
                 getTicketNumber$: ((): Observable<string | null> => this.store$.select(ticketSelectors.getTicketNumber))(),
                 fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber }))
@@ -33,15 +34,16 @@ export class StoreFacadeService {
                 getRideSummary$: ((): Observable<RideSummary> => this.store$.select(rideSummarySelectors.getRideSummary))(),
                 getAttractionName$: ((): Observable<string | null> => this.store$.select(rideSummarySelectors.getAttractionName))(),
                 getTicketArray$: ((): Observable<Ticket[] | null> => this.store$.select(rideSummarySelectors.getTicketArray))(),
+                getArriveByTime$: ((): Observable<string | null> => this.store$.select(rideSummarySelectors.getArriveByTime))(),
                 storeSelectedAttraction: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedAttraction({ id })),
                 fetchAdditionalTicket: (ticketNumber: string): void =>
                     this.store$.dispatch(rideSummaryActions.fetchAdditionalTicket({ ticketNumber })),
-                storeSelectedSlotNumber: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id })),
+                storeSelectedSlotNumber: (id: number, text: string): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id, text })),
                 storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
             },
             freeSlots: {
                 getFreeSlots$: ((): Observable<FreeChunk[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),
-                getFirstFreeSlot$: ((): Observable<number | null> => this.store$.select(freeSlotsSelectors.getFirstFreeSlot))(),
+                getFirstFreeSlot$: ((): Observable<FreeSlot | null> => this.store$.select(freeSlotsSelectors.getFirstFreeSlot))(),
                 fetchFreeSlots: (): void => this.store$.dispatch(freeSlotsActions.fetchFreeSlots())
             }
         };

@@ -10,7 +10,7 @@
             </div>
             <div class="mt-5">
                 <ng-container *ngFor="let chunk of freeChunks$ | ngrxPush">
-                    <div *ngIf="chunk.free" (click)="selectSlot(chunk.slots[0].slot_number)" class="timeslot open">
+                    <div *ngIf="chunk.free" (click)="selectSlot(chunk.slots[0].slot_number, chunk.slots[0].time)" class="timeslot open">
                         <h4>{{ chunk.time }}</h4>
                     </div>
                     <div *ngIf="!chunk.free" class="timeslot closed">

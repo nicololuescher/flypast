@@ -20,14 +20,14 @@ export class TimeSlotsComponent implements OnInit {
         this.storeFacadeService.user.freeSlots.fetchFreeSlots();
     }
 
-    selectSlot(id: number): void {
-        this.storeFacadeService.user.ride.storeSelectedSlotNumber(id);
+    selectSlot(id: number, text: string): void {
+        this.storeFacadeService.user.ride.storeSelectedSlotNumber(id, text);
         this.router.navigate(['../order-summary'], { relativeTo: this.route });
     }
 
     selectFirstSlot(): void {
         this.storeFacadeService.user.freeSlots.getFirstFreeSlot$.pipe(take(1)).subscribe((value) => {
-            this.selectSlot(value ?? 0);
+            this.selectSlot(value?.slot_number ?? 0, value?.time ?? '');
         });
     }
 }

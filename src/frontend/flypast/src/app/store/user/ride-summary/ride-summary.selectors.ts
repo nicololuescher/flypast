@@ -30,10 +30,15 @@ const getTicketCount = createSelector(getTicketArray, (tickets: Ticket[] | null)
     return tickets?.length ?? null;
 });
 
+const getArriveByTime = createSelector(getRideSummary, (rideSummary: RideSummary): string | null => {
+    return rideSummary.slot_text;
+});
+
 export const rideSummarySelectors = {
     getRideSummary,
     getAttractionName,
     getAttraction,
     getTicketArray,
-    getTicketCount
+    getTicketCount,
+    getArriveByTime
 };

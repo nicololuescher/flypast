@@ -11,7 +11,8 @@ const initialState: RideSummaryState = {
     rideSummary: {
         attraction: null,
         tickets: [],
-        slot_number: null
+        slot_number: null,
+        slot_text: null
     }
 };
 
@@ -36,12 +37,13 @@ const reducer = createReducer(
             }
         };
     }),
-    on(rideSummaryActions.storeSelectedSlotNumber, (state: RideSummaryState, { id }): RideSummaryState => {
+    on(rideSummaryActions.storeSelectedSlotNumber, (state: RideSummaryState, { id, text }): RideSummaryState => {
         return {
             ...state,
             rideSummary: {
                 ...state.rideSummary,
-                slot_number: id
+                slot_number: id,
+                slot_text: text
             }
         };
     })
