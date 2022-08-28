@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
 	"github.com/nicololuescher/flypast/models"
@@ -35,20 +37,50 @@ func CreateRide(c *fiber.Ctx) error {
 		return err
 	}
 
-	// Check if the ride already exists with slot_number
-	var existingRide models.Ride
-	if err := database.DBConn.Where("slot_number = ?", ride.SlotNumber).First(&existingRide).Error; err == nil {
-		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
-			"message": "Ride already exists",
-		})
-	}
-
-	if err := database.DBConn.Create(&ride).Error; err != nil {
+	// Get the ticket from the database
+	var ticket models.Ticket
+	if err := database.DBConn.First(&ticket, ride.TicketID).Error; err != nil {
 		return err
 	}
 
-	// Return the ride as JSON
-	return c.JSON(ride)
+	// Get the attraction from the database
+	var attraction models.Attraction
+	if err := database.DBConn.First(&attraction, ride.AttractionID).Error; err != nil {
+		return err
+	}
+
+	// Get all rides for chosen slot of attraction
+	var rides []models.Ride
+	if err := database.DBConn.Where("attraction_id = ?", ride.AttractionID).Where("slot_number = ?", ride.SlotNumber).Find(&rides).Error; err != nil {
+		return err
+	}
+
+	rideCount := 0
+
+	for _, _ride := range rides {
+		// Get the ticket from the database
+		var _ticket models.Ticket
+		if err := database.DBConn.First(&_ticket, _ride.TicketID).Error; err != nil {
+			return err
+		}
+		fmt.Println("_ticket.ValidAtDay: ", _ticket.ValidAtDay)
+		fmt.Println("ticket.ValidAtDay: ", ticket.ValidAtDay)
+		if _ticket.ValidAtDay == ticket.ValidAtDay {
+			rideCount = rideCount + 1
+		}
+	}
+
+	if rideCount < attraction.MaxRidesPerSlot {
+		if err := database.DBConn.Create(&ride).Error; err != nil {
+			return err
+		}
+
+		// Return the ride as JSON
+		return c.JSON(ride)
+	} else {
+		return c.JSON("this timeslot is full")
+	}
+
 }
 
 func UpdateRide(c *fiber.Ctx) error {
