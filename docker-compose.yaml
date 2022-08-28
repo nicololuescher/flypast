@@ -12,6 +12,9 @@ services:
       - "8000:8000"
     environment:
       DB_HOST: database
+      DB_USERNAME: flypast
+      DB_PASSWORD: sohueresicherischdasgarnidemauso
+      DB_NAME: flypast
     depends_on:
       database:
         condition: service_healthy
@@ -19,8 +22,12 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_USER: flypast
+      POSTGRES_PASSWORD: sohueresicherischdasgarnidemauso
+      POSTGRES_DB: flypast
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U flypast"]
       interval: 5s
       timeout: 5s
       retries: 5
