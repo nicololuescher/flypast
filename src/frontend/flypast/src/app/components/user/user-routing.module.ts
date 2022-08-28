@@ -7,7 +7,7 @@ import { SelectActivityComponent } from './3-select-activity/select-activity.com
 import { RiderInformationComponent } from './4-rider-information/rider-information.component';
 import { TimeSlotsComponent } from './5-time-slots/time-slots.component';
 import { OrderSummaryComponent } from './6-order-summary/order-summary.component';
-import {MapComponent} from "./map/map.component";
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: 'order-summary', component: OrderSummaryComponent },
     { path: 'time-slots', component: TimeSlotsComponent },
     { path: 'rider-information', component: RiderInformationComponent },
-    { path: 'map', component: MapComponent },
+    { path: 'map', component: MapComponent }
 ];
 
 @NgModule({

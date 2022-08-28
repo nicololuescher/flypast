@@ -26,7 +26,7 @@ export class MapComponent implements OnInit {
             })
         ],
         zoom: 12,
-        center: latLng(46.62, 8.00)
+        center: latLng(46.62, 8.0)
     };
     public markerClusterData: Marker[] = [];
 
@@ -34,8 +34,8 @@ export class MapComponent implements OnInit {
 
     ngOnInit(): void {
         this.markerClusterData.push(
-            marker([46.660556, 8.053611]).bindTooltip("First").openTooltip(),
-            marker([46.65844, 8.06518]).bindTooltip("Schreckfeld").openTooltip(),
+            marker([46.660556, 8.053611]).bindTooltip('First').openTooltip(),
+            marker([46.65844, 8.06518]).bindTooltip('Schreckfeld').openTooltip()
         );
     }
 }
