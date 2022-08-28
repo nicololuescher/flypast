@@ -41,6 +41,7 @@ export class StoreFacadeService {
             },
             freeSlots: {
                 getFreeSlots$: ((): Observable<FreeChunk[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),
+                getFirstFreeSlot$: ((): Observable<number | null> => this.store$.select(freeSlotsSelectors.getFirstFreeSlot))(),
                 fetchFreeSlots: (): void => this.store$.dispatch(freeSlotsActions.fetchFreeSlots())
             }
         };

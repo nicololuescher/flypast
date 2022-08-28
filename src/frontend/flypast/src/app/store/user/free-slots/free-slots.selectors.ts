@@ -13,6 +13,11 @@ const getFreeSlots = createSelector(getTicketState, (state: FreeSlotsState): Fre
     return state.slots;
 });
 
+const getFirstFreeSlot = createSelector(getFreeSlots, (chunk: FreeChunk[] | null): number | null => {
+    return chunk?.[0]?.slots?.[0]?.slot_number ?? null;
+});
+
 export const freeSlotsSelectors = {
+    getFirstFreeSlot,
     getFreeSlots
 };

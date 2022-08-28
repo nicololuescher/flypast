@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
 
 import { StoreFacadeService } from '../../../store/store-facade.service';
 
@@ -22,5 +23,11 @@ export class TimeSlotsComponent implements OnInit {
     selectSlot(id: number): void {
         this.storeFacadeService.user.ride.storeSelectedSlotNumber(id);
         this.router.navigate(['../order-summary'], { relativeTo: this.route });
+    }
+
+    selectFirstSlot(): void {
+        this.storeFacadeService.user.freeSlots.getFirstFreeSlot$.pipe(take(1)).subscribe((value) => {
+            this.selectSlot(value ?? 0);
+        });
     }
 }

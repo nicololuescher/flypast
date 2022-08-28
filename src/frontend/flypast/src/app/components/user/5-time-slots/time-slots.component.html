@@ -6,7 +6,7 @@
                 <h3>{{ attractionName$ | ngrxPush }}</h3>
             </div>
             <div class="mt-5">
-                <button class="lg:w-1/5 w-full">Next Possible Slot</button>
+                <button (click)="selectFirstSlot()" class="lg:w-1/5 w-full">Next Possible Slot</button>
             </div>
             <div class="mt-5">
                 <ng-container *ngFor="let chunk of freeChunks$ | ngrxPush">
