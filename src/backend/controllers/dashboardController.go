@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"math"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
@@ -34,6 +35,8 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 
 		var freeRidesPerSlotArray []models.FreeRidesPerSlot
 
+		localDate := time.Now().Format("2006-01-02")
+
 		for i := 0; i < numberOfSlots; i++ {
 
 			freeRidesPerSlotArray = append(freeRidesPerSlotArray, models.FreeRidesPerSlot{
@@ -42,7 +45,12 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 			})
 			if len(rides) > 0 {
 				for _, ride := range rides {
-					if ride.SlotNumber == i {
+					// Get the ticket from the database
+					var _ticket models.Ticket
+					if err := database.DBConn.First(&_ticket, ride.TicketID).Error; err != nil {
+						return err
+					}
+					if ride.SlotNumber == i && _ticket.ValidAtDay == localDate {
 						freeRidesPerSlotArray[i].FreeRides = freeRidesPerSlotArray[i].FreeRides - 1
 					}
 				}
