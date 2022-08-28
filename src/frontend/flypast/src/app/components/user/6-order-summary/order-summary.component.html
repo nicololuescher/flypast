@@ -1,28 +1,29 @@
-<div class="flex justify-center">
-    <div class="flex justify-center w-2/3">
-        <div class="flex flex-col grow border-2 border-gray-500 p-5 relative">
-            <div>
-                <p>Confirm</p>
+<h2>Confirm Order</h2>
+<div class="flex justify-center mt-32">
+    <div class="flex justify-center floatingbox">
+        <div class="flex flex-col grow p-5 relative">
+            <div class="mb-5">
+                <h3>Confirm</h3>
             </div>
             <div>
-                <p>{{ attractionName$ | ngrxPush }}</p>
+                <h3>{{ attractionName$ | ngrxPush }}</h3>
             </div>
             <div>
-                <p>Arrive by:</p>
-                <p>{{ date$ | ngrxPush }} {{ arriveByTime$ | ngrxPush }}</p>
+                <h4>Arrive by:</h4>
+                <h3>{{ date$ | ngrxPush }} {{ arriveByTime$ | ngrxPush }}</h3>
             </div>
             <div>
-                <p>Riders:</p>
+                <h4>Riders:</h4>
             </div>
             <div>
                 <ul>
                     <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
                 </ul>
             </div>
-            <div class="h-10">
+            <div class="mt-5">
                 <div class="flex">
-                    <button (click)="confirm()" class="w-16 h-6 bg-amber-500 rounded">Confirm</button>
-                    <button (click)="cancel()" class="w-16 h-6 bg-amber-500 rounded ml-auto">Cancel</button>
+                    <button (click)="confirm()" class="w-2/5">Confirm</button>
+                    <button (click)="cancel()" class="w-2/5 ml-auto bg-lightbg">Cancel</button>
                 </div>
             </div>
         </div>
