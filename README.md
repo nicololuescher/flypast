@@ -80,7 +80,7 @@ License: MIT
 You can deploy FlyPast with Docker-Compose.
 
 ```bash
-docker-compose up --build
+docker-compose up -d
 ```
 
 *Seed Data*
