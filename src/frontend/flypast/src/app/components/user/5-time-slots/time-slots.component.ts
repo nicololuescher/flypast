@@ -10,7 +10,7 @@ import { StoreFacadeService } from '../../../store/store-facade.service';
 })
 export class TimeSlotsComponent implements OnInit {
     public attractionName$ = this.storeFacadeService.user.ride.getAttractionName$;
-    public freeSlots$ = this.storeFacadeService.user.freeSlots.getFreeSlots$;
+    public freeChunks$ = this.storeFacadeService.user.freeSlots.getFreeSlots$;
 
     constructor(private storeFacadeService: StoreFacadeService, private router: Router, private route: ActivatedRoute) {}
 

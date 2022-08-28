@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 
@@ -17,8 +17,6 @@ export class AppComponent {
         // Navigate back to start in case of refresh
         this.router.events.pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd)).subscribe((event) => {
             if (event.id === 1 && event.url === event.urlAfterRedirects) {
-                console.log(router.url)
-                console.log(router.url.includes('dashboard'))
                 if (router.url.includes('admin')) {
                     router.navigate(['admin']);
                 } else if (router.url.includes('dashboard')) {

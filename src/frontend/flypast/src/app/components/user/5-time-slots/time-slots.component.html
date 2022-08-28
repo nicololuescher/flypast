@@ -9,9 +9,13 @@
                 <button class="lg:w-1/5 w-full">Next Possible Slot</button>
             </div>
             <div class="mt-5">
-                <ng-container *ngFor="let slot of freeSlots$ | ngrxPush">
-                    <div *ngIf="slot.free" (click)="selectSlot(0)" class="timeslot open"><h4>{{ slot.time }}</h4></div>
-                    <div *ngIf="!slot.free" class="timeslot closed"><h4>{{ slot.time }}</h4></div>
+                <ng-container *ngFor="let chunk of freeChunks$ | ngrxPush">
+                    <div *ngIf="chunk.free" (click)="selectSlot(chunk.slots[0].slot_number)" class="timeslot open">
+                        <h4>{{ chunk.time }}</h4>
+                    </div>
+                    <div *ngIf="!chunk.free" class="timeslot closed">
+                        <h4>{{ chunk.time }}</h4>
+                    </div>
                 </ng-container>
             </div>
         </div>

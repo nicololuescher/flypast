@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 
-import {Attraction, Ticket} from '../../../interfaces/models';
+import { Attraction, Ticket } from '../../../interfaces/models';
 import { RideSummary } from '../../../interfaces/ride-summary.interface';
 import { UserState } from '../user.reducer';
 import { userSelector } from '../user.selectors';
@@ -26,7 +26,7 @@ const getTicketArray = createSelector(getRideSummary, (rideSummary: RideSummary)
     return rideSummary.tickets ?? null;
 });
 
-const getTicketCount = createSelector(getTicketArray, (tickets: Ticket[] | null): number| null => {
+const getTicketCount = createSelector(getTicketArray, (tickets: Ticket[] | null): number | null => {
     return tickets?.length ?? null;
 });
 

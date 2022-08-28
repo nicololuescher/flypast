@@ -1,6 +1,6 @@
-import {BaseHttp, FreeSlotHttp} from '../interfaces/api-models';
-import {Attraction, BaseDates} from '../interfaces/models';
-import {FreeSlot} from "../interfaces/free-slots.interface";
+import { BaseHttp, FreeSlotHttp } from '../interfaces/api-models';
+import { FreeChunk } from '../interfaces/free-slots.interface';
+import { Attraction, BaseDates } from '../interfaces/models';
 
 export { parseAttractions, parseBaseDates };
 
@@ -12,25 +12,26 @@ function parseBaseDates<T extends BaseHttp>(data: T): BaseDates {
     };
 }
 
-function parseAttractions(slots: FreeSlotHttp[], attraction: Attraction, numberOfTickets: number): FreeSlot[] {
-    const sortedArray = slots.sort((n1, n2) => {
+function parseAttractions(slots: FreeSlotHttp[], attraction: Attraction, numberOfTickets: number): FreeChunk[] {
+    let sortedArray = slots.sort((n1, n2) => {
         if (n1.slot_number > n2.slot_number) return 1;
         return -1;
     });
 
-    let start = attraction.start_time_minutes;
+    const chunks: FreeChunk[] = [];
+    let currentIndex: number = 0;
+    for (let i = 0; i < attraction.end_time_minutes - attraction.start_time_minutes - attraction.slotduration; i += 30) {
+        chunks[i / 30] = { slots: [], time: intToDate(i + attraction.start_time_minutes), free: false };
+        while (!!sortedArray[currentIndex] && sortedArray[currentIndex].slot_number * attraction.slotduration < i + 30) {
+            if (sortedArray[currentIndex].free_rides >= numberOfTickets) {
+                chunks[i / 30].slots.push(sortedArray[currentIndex]);
+                chunks[i / 30].free = true;
+            }
+            currentIndex += 1;
+        }
+    }
 
-    return sortedArray.map((obj) => {
-        let time = intToDate(start);
-        start += attraction.slotduration;
-
-        return {
-            slot_number: obj.slot_number,
-            free_slots: obj.free_rides,
-            time: time,
-            free: obj.free_rides >= numberOfTickets
-        };
-    });
+    return chunks;
 }
 
 function intToDate(time: number): string {

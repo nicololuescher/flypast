@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { FreeChunk } from '../interfaces/free-slots.interface';
 import { Attraction, Ticket } from '../interfaces/models';
 import { RideSummary } from '../interfaces/ride-summary.interface';
 import { attractionActions, attractionSelectors } from './user/attraction';
+import { freeSlotsActions, freeSlotsSelectors } from './user/free-slots';
 import { rideSummaryActions, rideSummarySelectors } from './user/ride-summary';
 import { ticketActions, ticketSelectors } from './user/ticket';
-import {freeSlotsActions, freeSlotsSelectors} from "./user/free-slots";
-import {FreeSlot} from "../interfaces/free-slots.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -40,7 +40,7 @@ export class StoreFacadeService {
                 storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
             },
             freeSlots: {
-                getFreeSlots$: ((): Observable<FreeSlot[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),
+                getFreeSlots$: ((): Observable<FreeChunk[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),
                 fetchFreeSlots: (): void => this.store$.dispatch(freeSlotsActions.fetchFreeSlots())
             }
         };

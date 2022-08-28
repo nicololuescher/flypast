@@ -2,12 +2,21 @@
     <label for="ticket_nummer" class="block mb-2 text-sm font-medium">
         <h2>Ticketnumber</h2>
     </label>
-    <input type="text" id="ticket_nummer"
+    <input
+        type="text"
+        id="ticket_nummer"
         class="bg-gray-50 border mb-3 sm:w-4/5 w-full h-16 border-gray-300 text-sm rounded sm:rounded-l p-2.5"
-        placeholder="Ticketnummer" name="ticket_number" required minlength="10" ngModel />
-    <button type="submit" [disabled]="!ticketNumber.valid"
-        class="disabled:text-white disabled:bg-primarydisabled bg-secondary focus:ring-4 focus:outline-none font-medium sm:rounded-r rounded w-full sm:w-1/5 px-5 py-2.5 text-center">
+        placeholder="Ticketnummer"
+        name="ticket_number"
+        required
+        minlength="10"
+        ngModel
+    />
+    <button
+        type="submit"
+        [disabled]="!ticketNumber.valid"
+        class="disabled:text-white disabled:bg-primarydisabled bg-secondary focus:ring-4 focus:outline-none font-medium sm:rounded-r rounded w-full sm:w-1/5 px-5 py-2.5 text-center"
+    >
         Continue
     </button>
 </form>
-

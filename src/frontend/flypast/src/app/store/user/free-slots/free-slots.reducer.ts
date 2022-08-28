@@ -1,10 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import {FreeSlot} from "../../../interfaces/free-slots.interface";
-import {freeSlotsActions} from "./free-slots.actions";
+import { FreeChunk } from '../../../interfaces/free-slots.interface';
+import { freeSlotsActions } from './free-slots.actions';
 
 export interface FreeSlotsState {
-    slots: FreeSlot[] | null;
+    slots: FreeChunk[] | null;
 }
 
 const initialState: FreeSlotsState = {

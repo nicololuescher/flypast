@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Actions, concatLatestFrom, createEffect, ofType} from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
 
+import { FreeSlotsService } from '../../../services/free-slots.service';
 import { TicketService } from '../../../services/ticket.service';
-import {freeSlotsActions} from "./free-slots.actions";
-import {FreeSlotsService} from "../../../services/free-slots.service";
-import {rideSummarySelectors} from "../ride-summary";
-import {Store} from "@ngrx/store";
-import {ticketSelectors} from "../ticket";
+import { rideSummarySelectors } from '../ride-summary';
+import { ticketSelectors } from '../ticket';
+import { freeSlotsActions } from './free-slots.actions';
 
 @Injectable()
 export class FreeSlotsEffect {

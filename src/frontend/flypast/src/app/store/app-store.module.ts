@@ -6,10 +6,10 @@ import { StoreModule } from '@ngrx/store';
 import { adminFeatureKey, adminReducer } from './admin/admin.reducer';
 import { dashboardFeatureKey, dashboardReducer } from './dashboard/dashboard.reducer';
 import { AttractionEffect } from './user/attraction/attraction.effect';
+import { FreeSlotsEffect } from './user/free-slots';
 import { RideSummaryEffect } from './user/ride-summary';
 import { TicketEffect } from './user/ticket';
 import { userFeatureKey, userReducer } from './user/user.reducer';
-import {FreeSlotsEffect} from "./user/free-slots";
 
 @NgModule({
     declarations: [],

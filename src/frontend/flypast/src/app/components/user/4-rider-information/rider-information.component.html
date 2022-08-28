@@ -2,7 +2,7 @@
 <div class="flex justify-center mt-32">
     <div class="flex justify-center floatingbox">
         <div class="flex flex-col grow p-5 relative">
-                <h3>{{ attractionName$ | ngrxPush }}</h3>
+            <h3>{{ attractionName$ | ngrxPush }}</h3>
             <div class="mt-8">
                 <ul>
                     <li *ngFor="let ticket of ticketArray$ | ngrxPush">Ticket#{{ ticket?.ticket_number }}</li>
@@ -16,16 +16,7 @@
             </div>
             <div *ngIf="showInput">
                 <form (ngSubmit)="onSubmit(ticketNumber)" #ticketNumber="ngForm">
-                    <input
-                        type="text"
-                        id="ticket_nummer"
-                        class="border mb-3 w-full block"
-                        placeholder="Ticketnummer"
-                        name="ticket_number"
-                        required
-                        minlength="10"
-                        ngModel
-                    />
+                    <input type="text" id="ticket_nummer" class="border mb-3 w-full block" placeholder="Ticketnummer" name="ticket_number" required minlength="10" ngModel />
                     <button
                         type="submit"
                         [disabled]="!ticketNumber.valid"

@@ -1,6 +1,7 @@
-export interface FreeSlot {
-    slot_number: number;
-    free_slots: number;
-    time: string
-    free: boolean
+import { FreeSlotHttp } from './api-models';
+
+export interface FreeChunk {
+    slots: FreeSlotHttp[];
+    time: string;
+    free: boolean;
 }
