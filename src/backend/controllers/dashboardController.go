@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"math"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/nicololuescher/flypast/database"
@@ -32,25 +33,30 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 		// divide delta time by attraction Slotduration to get the number of slots
 		numberOfSlots := int(math.Round(float64(deltaTime / attraction.Slotduration)))
 
-		var freeRidesPerSlotArray []models.FreeRidesPerSlot
+		//var freeRidesPerSlotArray []models.FreeRidesPerSlot
+
+		localDate := time.Now().Format("2006-01-02")
+
+		numberOfReservedRides := 0
 
 		for i := 0; i < numberOfSlots; i++ {
-
-			freeRidesPerSlotArray = append(freeRidesPerSlotArray, models.FreeRidesPerSlot{
-				SlotNumber: i,
-				FreeRides:  attraction.MaxRidesPerSlot,
-			})
 			if len(rides) > 0 {
 				for _, ride := range rides {
-					if ride.SlotNumber == i {
-						freeRidesPerSlotArray[i].FreeRides = freeRidesPerSlotArray[i].FreeRides - 1
+					// Get the ticket from the database
+					var _ticket models.Ticket
+					if err := database.DBConn.First(&_ticket, ride.TicketID).Error; err != nil {
+						return err
+					}
+					if ride.SlotNumber == i && _ticket.ValidAtDay == localDate {
+						numberOfReservedRides++
 					}
 				}
 			}
 		}
 		Dashboard = append(Dashboard, models.Dashboard{
-			Attraction:       attraction,
-			FreeRidesPerSlot: freeRidesPerSlotArray,
+			Attraction:    attraction,
+			TotalSlots:    numberOfSlots,
+			ReservedSlots: numberOfReservedRides,
 		})
 	}
 
