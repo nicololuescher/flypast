@@ -33,16 +33,13 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 		// divide delta time by attraction Slotduration to get the number of slots
 		numberOfSlots := int(math.Round(float64(deltaTime / attraction.Slotduration)))
 
-		var freeRidesPerSlotArray []models.FreeRidesPerSlot
+		//var freeRidesPerSlotArray []models.FreeRidesPerSlot
 
 		localDate := time.Now().Format("2006-01-02")
 
-		for i := 0; i < numberOfSlots; i++ {
+		numberOfReservedRides := 0
 
-			freeRidesPerSlotArray = append(freeRidesPerSlotArray, models.FreeRidesPerSlot{
-				SlotNumber: i,
-				FreeRides:  attraction.MaxRidesPerSlot,
-			})
+		for i := 0; i < numberOfSlots; i++ {
 			if len(rides) > 0 {
 				for _, ride := range rides {
 					// Get the ticket from the database
@@ -51,14 +48,15 @@ func GetAttractionFreeRidesToday(c *fiber.Ctx) error {
 						return err
 					}
 					if ride.SlotNumber == i && _ticket.ValidAtDay == localDate {
-						freeRidesPerSlotArray[i].FreeRides = freeRidesPerSlotArray[i].FreeRides - 1
+						numberOfReservedRides++
 					}
 				}
 			}
 		}
 		Dashboard = append(Dashboard, models.Dashboard{
-			Attraction:       attraction,
-			FreeRidesPerSlot: freeRidesPerSlotArray,
+			Attraction:    attraction,
+			TotalSlots:    numberOfSlots,
+			ReservedSlots: numberOfReservedRides,
 		})
 	}
 
