@@ -11,6 +11,9 @@ func Setup(app *fiber.App) {
 	api := app.Group("/api")
 	v1 := api.Group("/v1")
 
+	// ping endpoint
+	v1.Get("/ping", controllers.Ping)
+
 	// Auth
 	v1.Post("/auth", controllers.Login)
 	v1.Get("/auth", controllers.CheckLogin)
