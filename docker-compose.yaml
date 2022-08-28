@@ -31,3 +31,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+  seed:
+    build: seed
+    depends_on:
+      - frontend
+      - api
+      - database
