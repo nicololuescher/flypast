@@ -1,0 +1,10 @@
+{
+    "name": "Glider",
+    "description": "to glide some glide",
+    "image_url": "https://gipfe.li",
+    "coordinates": "46.659378724908365, 8.055157428398363",
+    "slotduration": 10,
+    "start_time_minutes": 480,
+    "end_time_minutes": 1080,
+    "max_rides_per_slot": 4
+}

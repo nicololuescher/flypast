@@ -40,4 +40,14 @@ func Setup(app *fiber.App) {
 	v1.Put("/rides/:id", controllers.UpdateRide)
 	v1.Delete("/rides/:id", controllers.DeleteRide)
 	// v1.Get("/rides/:ticket_id", controllers.GetRidesByTicketID)
+
+	// Activity
+	v1.Get("/activities", controllers.GetActivities)
+	v1.Get("/activities/:id", controllers.GetActivitiesByTicketID)
+	v1.Post("/activities", controllers.CreateActivity)
+	v1.Put("/activities/:id", controllers.UpdateActivity)
+	v1.Delete("/activities/:id", controllers.DeleteActivity)
+
+	// Simple routes
+	// v1.Get("/")
 }

@@ -1,10 +1,10 @@
-FROM node:16 as builder
-
+FROM node:latest as node
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build -- --configuration=production
 
 FROM nginx:alpine
-COPY --from=builder /app/dist/flypast /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY --from=node /app/dist/flypast /usr/share/nginx/html
 EXPOSE 80
