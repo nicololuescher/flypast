@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Attraction } from 'src/app/interfaces/models';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-dashboard',
@@ -7,10 +9,14 @@ import { Attraction } from 'src/app/interfaces/models';
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    attentions?: Attraction[];
-    constructor() {}
+    object: any;
 
-    /* eslint-disable */
-    ngOnInit(): void {}
-    /* eslint-enable */
+    constructor(private http: HttpClient) {}
+
+    ngOnInit(): void {
+        this.http.get(environment.baseUrl + 'dashboard').subscribe((obj) => {
+            console.log(obj);
+            this.object = obj;
+        });
+    }
 }

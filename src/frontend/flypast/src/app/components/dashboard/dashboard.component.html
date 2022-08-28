@@ -1,9 +1,20 @@
 <div class="flex justify-center">
     <div class="flex flex-col">
         <div class="flex justify-end">
-            <div *ngFor="let at of attentions" class="item w-64 h-auto flex-auto">
-                <h1>{{ at.name }}</h1>
+            <div *ngFor="let ob of object" class="item w-64 h-auto flex-auto text-center">
+                <h1>{{ ob.Attraction.name }}</h1>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="flex justify-center">
+    <div class="grid overflow-hidden grid-cols-4 grid-rows-5 gap-2 w-full text-center">
+        <div class="box col-start-1 col-end-1">
+            
+        </div>
+        <div class="box col-start-2 col-end-2">2</div>
+        <div class="box col-start-3 col-end-3">3</div>
+        <div class="box col-start-4 col-end-4">4</div>
     </div>
 </div>
