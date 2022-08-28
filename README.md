@@ -76,21 +76,27 @@ License: MIT
 
 ## Setup
 
-You can deploy FlyPast with Docker-Compose.
+You can deploy FlyPast with Docker-Compose.  
+Some test data will get seeded automatically.
 
 ```bash
 docker-compose up -d
 ```
 
-*Seed Data*
+### User View
 
-```bash
-cd seed
-./seed.sh # execute seed data on backend api
-```
-
+On the user view you can enter your ticket number and select a slot for any given adventure.  
 Visit [http://localhost:8080](http://localhost:8080)
 
+### Admin View
+
+On the admin view, you can login as an admin and manage the adventures.  
+Visit [http://localhost:8080/admin](http://localhost:8080/admin)
+
+### Dashboard
+
+On the dashboard you can see the current status of the adventures.  
+Visit [http://localhost:8080/dashboard](http://localhost:8080/dashboard)
 
 ### Environment Variables
 
