@@ -24,7 +24,7 @@ export class StoreFacadeService {
                 getTicketDateUi$: ((): Observable<string | null> => this.store$.select(ticketSelectors.getTicketDateUi))(),
                 getNumberOfRides$: ((): Observable<number | null> => this.store$.select(ticketSelectors.getNumberOfRides))(),
                 getTicketNumber$: ((): Observable<string | null> => this.store$.select(ticketSelectors.getTicketNumber))(),
-                fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber }))
+                fetchTicket: (ticketNumber: string): void => this.store$.dispatch(ticketActions.fetchTicket({ ticketNumber })),
             },
             attraction: {
                 getAttractions$: ((): Observable<Attraction[] | null> => this.store$.select(attractionSelectors.getAttractions))(),
@@ -35,11 +35,15 @@ export class StoreFacadeService {
                 getAttractionName$: ((): Observable<string | null> => this.store$.select(rideSummarySelectors.getAttractionName))(),
                 getTicketArray$: ((): Observable<Ticket[] | null> => this.store$.select(rideSummarySelectors.getTicketArray))(),
                 getArriveByTime$: ((): Observable<string | null> => this.store$.select(rideSummarySelectors.getArriveByTime))(),
+                getPersistedRides$: ((): Observable<RideSummary[]> => this.store$.select(rideSummarySelectors.getPersistedRides))(),
+                getPersistedRidesCount$: ((): Observable<number> => this.store$.select(rideSummarySelectors.getPersistedRidesCount))(),
+                getStillOpenCount$: ((): Observable<number | null> => this.store$.select(rideSummarySelectors.getStillOpenCount))(),
                 storeSelectedAttraction: (id: number): void => this.store$.dispatch(rideSummaryActions.storeSelectedAttraction({ id })),
                 fetchAdditionalTicket: (ticketNumber: string): void =>
                     this.store$.dispatch(rideSummaryActions.fetchAdditionalTicket({ ticketNumber })),
                 storeSelectedSlotNumber: (id: number, text: string): void => this.store$.dispatch(rideSummaryActions.storeSelectedSlotNumber({ id, text })),
-                storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide())
+                storeRide: (): void => this.store$.dispatch(rideSummaryActions.storeRide()),
+                storeStillOpen: (count: number): void => this.store$.dispatch(rideSummaryActions.storeStillOpen( { count }))
             },
             freeSlots: {
                 getFreeSlots$: ((): Observable<FreeChunk[] | null> => this.store$.select(freeSlotsSelectors.getFreeSlots))(),

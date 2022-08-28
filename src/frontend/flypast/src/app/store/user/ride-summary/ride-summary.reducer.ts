@@ -5,6 +5,8 @@ import { rideSummaryActions } from './ride-summary.actions';
 
 export interface RideSummaryState {
     rideSummary: RideSummary;
+    rideConfirmed: RideSummary[];
+    stillOpen: number | null;
 }
 
 const initialState: RideSummaryState = {
@@ -13,7 +15,9 @@ const initialState: RideSummaryState = {
         tickets: [],
         slot_number: null,
         slot_text: null
-    }
+    },
+    rideConfirmed: [],
+    stillOpen: null
 };
 
 const reducer = createReducer(
@@ -46,7 +50,20 @@ const reducer = createReducer(
                 slot_text: text
             }
         };
-    })
+    }),
+    on(rideSummaryActions.storeStillOpen, (state: RideSummaryState, { count }): RideSummaryState => {
+        return {
+            ...state,
+            stillOpen: count
+        };
+    }),
+    on(rideSummaryActions.persistRide, (state: RideSummaryState, { ride }): RideSummaryState => {
+        return {
+            ...state,
+            rideConfirmed: [ ...state.rideConfirmed, ride ],
+            stillOpen: state.stillOpen ? state.stillOpen - 1 : null
+        };
+    }),
 );
 
 export function rideSummaryReducer(state: RideSummaryState | undefined, action: Action): RideSummaryState {

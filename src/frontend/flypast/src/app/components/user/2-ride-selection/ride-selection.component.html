@@ -1,6 +1,12 @@
 <h2>My Rides</h2>
 <div class="flex justify-center w-full mt-32">
     <div class="flex flex-col w-full justify-center">
+        <div *ngFor="let ride of rides$ | ngrxPush"
+            class="group w-4/5 h-48 border-2 rounded border-gray-500 flex flex-col justify-center items-center text-center m-auto mb-8"
+        >
+                <h2>{{ ride.attraction?.name }}</h2>
+                <h3>Arrive by: {{ ride.slot_text }}</h3>
+        </div>
         <div
             *ngFor="let i of [].constructor(numberOfRides$ | ngrxPush)"
             (click)="openSelect()"

@@ -47,9 +47,13 @@ export class RideSummaryEffect {
         () => {
             return this.actions$.pipe(
                 ofType(rideSummaryActions.storeRide),
-                concatLatestFrom(() => [this.store$.select(rideSummarySelectors.getRideSummary)]),
-                filter(([_, rideSummary]) => rideSummary.slot_number !== null && rideSummary.attraction !== null),
-                tap(([_, rideSummary]) => {
+                concatLatestFrom(() => [
+                    this.store$.select(rideSummarySelectors.getRideSummary),
+                    this.store$.select(ticketSelectors.getTicket),
+                    this.store$.select(rideSummarySelectors.getPersistedRidesCount),
+                ]),
+                filter(([_, rideSummary, ticket, ridesCount]) => rideSummary.slot_number !== null && rideSummary.attraction !== null && (ticket?.number_of_rides ?? 0) > ridesCount),
+                map(([_, rideSummary]) => {
                     rideSummary.tickets.forEach((ticket) => {
                         this.rideService
                             .storeRide({
@@ -60,9 +64,10 @@ export class RideSummaryEffect {
                             .pipe(take(1))
                             .subscribe();
                     });
+
+                    return rideSummaryActions.persistRide({ ride: rideSummary });
                 })
             );
-        },
-        { dispatch: false }
+        }
     );
 }

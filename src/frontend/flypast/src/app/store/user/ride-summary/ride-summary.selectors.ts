@@ -34,11 +34,26 @@ const getArriveByTime = createSelector(getRideSummary, (rideSummary: RideSummary
     return rideSummary.slot_text;
 });
 
+const getPersistedRides = createSelector(getRideSummaryState, (state: RideSummaryState): RideSummary[] => {
+    return state.rideConfirmed;
+});
+
+const getPersistedRidesCount = createSelector(getPersistedRides, (rides: RideSummary[]): number => {
+    return rides.length;
+});
+
+const getStillOpenCount = createSelector(getRideSummaryState, (rides: RideSummaryState): number | null => {
+    return rides.stillOpen;
+});
+
 export const rideSummarySelectors = {
     getRideSummary,
     getAttractionName,
     getAttraction,
     getTicketArray,
     getTicketCount,
-    getArriveByTime
+    getArriveByTime,
+    getPersistedRides,
+    getPersistedRidesCount,
+    getStillOpenCount
 };

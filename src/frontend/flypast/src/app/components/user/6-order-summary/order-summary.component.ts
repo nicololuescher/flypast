@@ -21,6 +21,7 @@ export class OrderSummaryComponent implements OnInit {
 
     confirm(): void {
         this.storeFacadeService.user.ride.storeRide();
+        this.router.navigate(['../ride-selection'], { relativeTo: this.route });
     }
 
     cancel(): void {

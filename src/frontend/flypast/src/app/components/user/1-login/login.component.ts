@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
                 filter((value) => !!value),
                 take(1)
             )
-            .subscribe((value) => this.router.navigate(['../ride-selection'], { relativeTo: this.route }));
+            .subscribe((value) => {
+                this.storeFacade.user.ride.storeStillOpen(value?.number_of_rides ?? 0);
+                this.router.navigate(['../ride-selection'], {relativeTo: this.route});
+            });
+
     }
 }
